@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  status: MyString
+  priority: MyString
+  due_date: 2012-11-01
+  estimated_date: 2012-11-01
+  percentage_completed: 1.5
+  task_or_bug: MyString
+
+two:
+  title: MyString
+  status: MyString
+  priority: MyString
+  due_date: 2012-11-01
+  estimated_date: 2012-11-01
+  percentage_completed: 1.5
+  task_or_bug: MyString

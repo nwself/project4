@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyString
+  permissions: MyString
+  title: MyString
+  user_project_rel_id: 1
+
+two:
+  content: MyString
+  permissions: MyString
+  title: MyString
+  user_project_rel_id: 1
