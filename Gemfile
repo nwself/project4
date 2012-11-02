@@ -9,6 +9,10 @@ gem 'devise'
 gem 'sqlite3'
 
 
+group :development do
+	gem 'annotate'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -1,6 +1,10 @@
 Project4::Application.routes.draw do
   devise_for :users
 
+  root :to => 'static_pages#home'
+
+  resources :projects, :task_bugs, :resources
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
