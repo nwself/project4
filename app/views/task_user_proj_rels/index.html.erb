@@ -1,0 +1,25 @@
+<h1>Listing task_user_proj_rels</h1>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>User project rel</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @task_user_proj_rels.each do |task_user_proj_rel| %>
+  <tr>
+    <td><%= task_user_proj_rel.task_id %></td>
+    <td><%= task_user_proj_rel.user_project_rel %></td>
+    <td><%= link_to 'Show', task_user_proj_rel %></td>
+    <td><%= link_to 'Edit', edit_task_user_proj_rel_path(task_user_proj_rel) %></td>
+    <td><%= link_to 'Destroy', task_user_proj_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task user proj rel', new_task_user_proj_rel_path %>

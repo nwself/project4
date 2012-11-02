@@ -1,14 +1,14 @@
 require 'test_helper'
 
 class ResourcesControllerTest < ActionController::TestCase
+  setup do
+    @resource = resources(:one)
+  end
+
   test "should get index" do
     get :index
     assert_response :success
-  end
-
-  test "should get create" do
-    get :create
-    assert_response :success
+    assert_not_nil assigns(:resources)
   end
 
   test "should get new" do
@@ -16,24 +16,34 @@ class ResourcesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should create resource" do
+    assert_difference('Resource.count') do
+      post :create, resource: { content: @resource.content, permissions: @resource.permissions, user_project_rel_id: @resource.user_project_rel_id }
+    end
+
+    assert_redirected_to resource_path(assigns(:resource))
+  end
+
+  test "should show resource" do
+    get :show, id: @resource
+    assert_response :success
+  end
+
   test "should get edit" do
-    get :edit
+    get :edit, id: @resource
     assert_response :success
   end
 
-  test "should get show" do
-    get :show
-    assert_response :success
+  test "should update resource" do
+    put :update, id: @resource, resource: { content: @resource.content, permissions: @resource.permissions, user_project_rel_id: @resource.user_project_rel_id }
+    assert_redirected_to resource_path(assigns(:resource))
   end
 
-  test "should get update" do
-    get :update
-    assert_response :success
-  end
+  test "should destroy resource" do
+    assert_difference('Resource.count', -1) do
+      delete :destroy, id: @resource
+    end
 
-  test "should get destroy" do
-    get :destroy
-    assert_response :success
+    assert_redirected_to resources_path
   end
-
 end

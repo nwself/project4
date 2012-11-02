@@ -1,2 +1,40 @@
-<h1>TaskBug#show</h1>
-<p>Find me in app/views/task_bug/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @task_bug.title %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task_bug.status %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @task_bug.priority %>
+</p>
+
+<p>
+  <b>Due date:</b>
+  <%= @task_bug.due_date %>
+</p>
+
+<p>
+  <b>Estimated date:</b>
+  <%= @task_bug.estimated_date %>
+</p>
+
+<p>
+  <b>Percentage completed:</b>
+  <%= @task_bug.percentage_completed %>
+</p>
+
+<p>
+  <b>Task or bug:</b>
+  <%= @task_bug.task_or_bug %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_bug_path(@task_bug) %> |
+<%= link_to 'Back', task_bugs_path %>

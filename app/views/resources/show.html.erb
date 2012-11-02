@@ -1,2 +1,20 @@
-<h1>Resources#show</h1>
-<p>Find me in app/views/resources/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @resource.content %>
+</p>
+
+<p>
+  <b>Permissions:</b>
+  <%= @resource.permissions %>
+</p>
+
+<p>
+  <b>User project rel:</b>
+  <%= @resource.user_project_rel_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>
