@@ -12,4 +12,8 @@
 
 class UserProjectRel < ActiveRecord::Base
   attr_accessible :project_id, :role, :user_id
+
+  validates :role , inclusion: { :in => %w(admin developer tester client) }
+
+  belongs_to :project
 end

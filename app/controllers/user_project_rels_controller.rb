@@ -27,11 +27,17 @@ class UserProjectRelsController < ApplicationController
   # GET /user_project_rels/new
   # GET /user_project_rels/new.json
   def new
-    @user_project_rel = UserProjectRel.new
+    @project = Project.find_by_id(params[:project_id])
+    if @project.nil?
+      # Can probably do better than this
+      redirect_to projects_path
+    else
+      @user_project_rel = UserProjectRel.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user_project_rel }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @user_project_rel }
+      end
     end
   end
 

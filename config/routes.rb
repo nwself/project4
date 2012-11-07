@@ -7,7 +7,8 @@ Project4::Application.routes.draw do
 
   resources :task_bugs
 
-  resources :user_project_rels
+  resources :user_project_rels, only: [:new, :edit, :create, :destroy]
+  match '/:project_id/add_user', to: 'user_project_rels#new'
 
   resources :projects
   root :to => 'projects#index'
