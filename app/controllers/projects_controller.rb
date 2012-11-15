@@ -5,7 +5,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+<<<<<<< HEAD
     @projects = Project.all
+=======
+    @projects = current_user.projects
+
+>>>>>>> new_branch_name
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -16,9 +21,16 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+<<<<<<< HEAD
     @rels=UserProjectRel.find_all_by_project_id(@project.id)
     
     
+=======
+    @project.tasks
+    @project.bugs
+    @project.resources
+
+>>>>>>> new_branch_name
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -48,6 +60,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+          @rel=@project.user_project_rels.build(:project_id=>@project.id, :user_id=>current_user.id, :role=>'Administrator')
+          @rel.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
         u=current_user

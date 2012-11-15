@@ -1,7 +1,4 @@
 class TaskUserProjRelsController < ApplicationController
-
-  before_filter :authenticate_user!
-
   # GET /task_user_proj_rels
   # GET /task_user_proj_rels.json
   def index

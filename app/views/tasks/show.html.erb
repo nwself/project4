@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @task.title %>
+</p>
+
+<p>
+  <b>Task or bug:</b>
+  <%= @task.task_or_bug %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task.status %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @task.priority %>
+</p>
+
+<p>
+  <b>Percentage completed:</b>
+  <%= @task.percentage_completed %>
+</p>
+
+<p>
+  <b>Due date:</b>
+  <%= @task.due_date %>
+</p>
+
+<p>
+  <b>Estimated date:</b>
+  <%= @task.estimated_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_task_path([@task.project,@task]) %> |
+<%= link_to 'Back', project_tasks_path %>

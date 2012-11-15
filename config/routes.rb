@@ -1,16 +1,29 @@
 Project4::Application.routes.draw do
-  devise_for :users
 
-  resources :resources
 
+  resources :tasks
   resources :task_user_proj_rels
-
-  resources :task_bugs
 
   resources :user_project_rels
 
+<<<<<<< HEAD
   resources :projects do
   resources :resources
+=======
+  devise_for :users
+
+  resources :resources
+  
+
+
+  resources :user_project_rels, only: [:new, :edit, :create, :destroy]
+  match '/:project_id/add_user', to: 'user_project_rels#new'
+  
+  resources :projects do
+    resources :tasks
+    resources :bugs
+    resources :resources
+>>>>>>> new_branch_name
   end
   
   root :to => 'projects#index'

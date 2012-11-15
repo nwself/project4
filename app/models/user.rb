@@ -15,12 +15,15 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  username               :string(255)
 #
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  has_many :user_project_rels,:dependent => :destroy
+  has_many :projects, :through => :user_project_rels
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @bug.title %>
+</p>
+
+
+<p>
+  <b>Status:</b>
+  <%= @bug.status %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @bug.priority %>
+</p>
+
+<p>
+  <b>Percentage completed:</b>
+  <%= @bug.percentage_completed %>
+</p>
+
+<p>
+  <b>Due date:</b>
+  <%= @bug.due_date %>
+</p>
+
+<p>
+  <b>Estimated date:</b>
+  <%= @bug.estimated_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_bug_path([@project,@bug]) %> |
+<%= link_to 'Back', project_bugs_path %>
