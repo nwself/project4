@@ -1,16 +1,27 @@
 Project4::Application.routes.draw do
+  resources :bugs
+
+  resources :tasks
+
+  resources :task_user_proj_rels
+
+  resources :user_project_rels
+
   devise_for :users
 
   resources :resources
-
-  resources :task_user_proj_rels
+  
 
   resources :task_bugs
 
   resources :user_project_rels, only: [:new, :edit, :create, :destroy]
   match '/:project_id/add_user', to: 'user_project_rels#new'
-
-  resources :projects
+  
+  resources :projects do
+    resources :tasks
+    resources :bugs
+  end
+  
   root :to => 'projects#index'
 
   # The priority is based upon order of creation:

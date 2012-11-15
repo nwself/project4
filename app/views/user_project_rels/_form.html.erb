@@ -12,19 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="field">
+    <%= f.label :project %><br />
+    <%= f.text_field :project %>
   </div>
   <div class="field">
     <%= f.label :role %><br />
-    <select name="user_project_rel[role]">
-      <option value="1">Admin</option>
-      <option value="2" selected="selected">Developer</option>
-      <option value="3">Tester</option>
-      <option value="4">Client</option>
-    </select>
+    <%= f.text_field :role %>
   </div>
   <div class="actions">
-    <%= f.submit value="Add collaborator!" %>
+    <%= f.submit %>
   </div>
 <% end %>

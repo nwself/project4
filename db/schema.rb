@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102172556) do
+ActiveRecord::Schema.define(:version => 20121107232714) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -41,11 +41,14 @@ ActiveRecord::Schema.define(:version => 20121102172556) do
   end
 
   create_table "task_user_proj_rels", :force => true do |t|
-    t.integer  "task_id"
-    t.integer  "user_project_rel"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "task_bug_id"
+    t.integer  "user_project_rel_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
+
+  add_index "task_user_proj_rels", ["task_bug_id"], :name => "index_task_user_proj_rels_on_task_bug_id"
+  add_index "task_user_proj_rels", ["user_project_rel_id"], :name => "index_task_user_proj_rels_on_user_project_rel_id"
 
   create_table "user_project_rels", :force => true do |t|
     t.integer  "user_id"
@@ -54,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20121102172556) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "user_project_rels", ["project_id"], :name => "index_user_project_rels_on_project_id"
+  add_index "user_project_rels", ["user_id"], :name => "index_user_project_rels_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

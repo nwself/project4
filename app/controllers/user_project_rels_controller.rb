@@ -1,7 +1,4 @@
 class UserProjectRelsController < ApplicationController
-
-  before_filter :authenticate_user!
-
   # GET /user_project_rels
   # GET /user_project_rels.json
   def index
@@ -16,7 +13,11 @@ class UserProjectRelsController < ApplicationController
   # GET /user_project_rels/1
   # GET /user_project_rels/1.json
   def show
-    @user_project_rel = UserProjectRel.find(params[:id])
+    u = UserProjectRel.find(params[:id]).user
+    
+    @projects = u.projects
+
+    #@sample = UserProjectRel.find(params[:id]).task_user_proj_rels
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,17 +28,11 @@ class UserProjectRelsController < ApplicationController
   # GET /user_project_rels/new
   # GET /user_project_rels/new.json
   def new
-    @project = Project.find_by_id(params[:project_id])
-    if @project.nil?
-      # Can probably do better than this
-      redirect_to projects_path
-    else
-      @user_project_rel = UserProjectRel.new
+    @user_project_rel = UserProjectRel.new
 
-      respond_to do |format|
-        format.html # new.html.erb
-        format.json { render json: @user_project_rel }
-      end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user_project_rel }
     end
   end
 

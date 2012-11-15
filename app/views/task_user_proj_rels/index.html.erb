@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Bug</th>
     <th>Task</th>
     <th>User project rel</th>
     <th></th>
@@ -11,7 +12,8 @@
 
 <% @task_user_proj_rels.each do |task_user_proj_rel| %>
   <tr>
-    <td><%= task_user_proj_rel.task_id %></td>
+    <td><%= task_user_proj_rel.bug%></td>
+    <td><%= task_user_proj_rel.task%></td>
     <td><%= task_user_proj_rel.user_project_rel %></td>
     <td><%= link_to 'Show', task_user_proj_rel %></td>
     <td><%= link_to 'Edit', edit_task_user_proj_rel_path(task_user_proj_rel) %></td>
