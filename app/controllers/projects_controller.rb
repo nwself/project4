@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -17,10 +16,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-
+    @rels=UserProjectRel.find_all_by_project_id(@project.id)
+    
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
+    format.json { render json: @rels }
     end
   end
 
@@ -28,7 +30,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
@@ -49,6 +50,9 @@ class ProjectsController < ApplicationController
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
+        u=current_user
+        relation=@project.user_project_rels.build(:project_id=>@project.id, :user_id=>u.id, :role =>'Administrator');
+        relation.save
       else
         format.html { render action: "new" }
         format.json { render json: @project.errors, status: :unprocessable_entity }

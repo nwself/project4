@@ -1,4 +1,4 @@
-<h1>Listing resources</h1>
+<h1>List of Resources</h1>
 
 <table>
   <tr>
@@ -15,9 +15,9 @@
     <td><%= resource.content %></td>
     <td><%= resource.permissions %></td>
     <td><%= resource.user_project_rel_id %></td>
-    <td><%= link_to 'Show', resource %></td>
+    <td><%= link_to 'View', resource %></td>
     <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-    <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

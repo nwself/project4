@@ -12,4 +12,7 @@
 
 class UserProjectRel < ActiveRecord::Base
   attr_accessible :project_id, :role, :user_id
+  belongs_to :projects
+  belongs_to :users
+  belongs_to :resources
 end

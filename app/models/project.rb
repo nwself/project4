@@ -11,4 +11,7 @@
 
 class Project < ActiveRecord::Base
   attr_accessible :description, :name
+  has_many :user_project_rels
+  has_many :resources, :through=> :user_project_rels
+  has_many :users, :through=> :user_project_rels
 end

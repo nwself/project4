@@ -12,4 +12,7 @@
 
 class Resource < ActiveRecord::Base
   attr_accessible :content, :permissions, :user_project_rel_id
+
+  has_many :user_proj_rel
+  has_one :projects, :through=> :user_proj_rel
 end

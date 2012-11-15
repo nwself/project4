@@ -9,7 +9,10 @@ Project4::Application.routes.draw do
 
   resources :user_project_rels
 
-  resources :projects
+  resources :projects do
+  resources :resources
+  end
+  
   root :to => 'projects#index'
 
   # The priority is based upon order of creation:
