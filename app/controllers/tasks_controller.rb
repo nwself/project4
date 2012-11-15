@@ -29,8 +29,8 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new
-
+     @task = Task.new
+     @project = Project.find(params[:project_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -45,17 +45,22 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(params[:task])
-
+    pi = params[:project_id]
+    uid =current_user.id
+    @rel=UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id])
+   # @rel = UserProjectRel.where(:project_id => params[:project_id],   :user_id => current_user.id)
+    @task = @rel.tasks.create(params[:task])
+    
     respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
+      if @rel.save
+        format.html { redirect_to project_path(params[:project_id]), notice: 'Bug was successfully created.' }
+        format.json { render json: @bug, status: :created, location: @bug }
       else
         format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { render json: @bug.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # PUT /tasks/1

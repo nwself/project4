@@ -33,6 +33,6 @@ class Task < ActiveRecord::Base
     
   before_save :default_for_task
   def default_for_task
-    task_or_bug = 'T'
+    self.task_or_bug = 'T'
   end
 end

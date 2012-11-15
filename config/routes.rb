@@ -1,8 +1,7 @@
 Project4::Application.routes.draw do
-  resources :bugs
+
 
   resources :tasks
-
   resources :task_user_proj_rels
 
   resources :user_project_rels
@@ -12,7 +11,6 @@ Project4::Application.routes.draw do
   resources :resources
   
 
-  resources :task_bugs
 
   resources :user_project_rels, only: [:new, :edit, :create, :destroy]
   match '/:project_id/add_user', to: 'user_project_rels#new'
