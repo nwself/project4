@@ -1,0 +1,26 @@
+<h1>List of Resources</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Permissions</th>
+    <th>User project rel</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rels.each do |rel| %>
+  <tr>
+    <td><%= Resource.find(rel.id).content %></td>
+    <td><%= Resource.find(rel.id).permissions %></td>
+    <td><%= link_to 'View', Resource.find(rel.id) %></td>
+    <td><%= link_to 'Edit', edit_resource_path(Resource.find(rel.id)) %></td>
+    <td><%= link_to 'Delete', Resource.find(rel.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resource', new_resource_path %>

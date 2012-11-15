@@ -9,12 +9,14 @@
   <b>Description:</b>
   <%= @project.description %>
 </p>
-<p>
+
 <% @rels.each do |rel| %>
+<p>
 <b>Username: </b> <%=User.find(rel.user_id).username%>
 <b> Role: </b> <%= rel.role %>
-<% end %>
 </p>
+<% end %>
+
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

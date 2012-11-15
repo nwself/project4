@@ -5,10 +5,10 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.find(params[:project_id])
+ 	@rels=UserProjectRel.find_all_by_project_id(params[:project_id])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @resources }
+      format.json { render json: @rels }
     end
   end
 
@@ -42,10 +42,12 @@ class ResourcesController < ApplicationController
   # POST /resources
   # POST /resources.json
   def create
-    @resource = Resource.new(params[:resource])
+    @rels=UserProjectRel.find_by_project_id(@project.id)
+    @resource = Resource.new(params[:resource], @rels.id)
 
     respond_to do |format|
       if @resource.save
+      
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
