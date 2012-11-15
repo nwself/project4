@@ -32,7 +32,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   validates :username, presence: true, length: { minimum: 6 }
-  has_many :user_project_rels
-  has_many :projects, :through=> :user_project_rels
 
 end

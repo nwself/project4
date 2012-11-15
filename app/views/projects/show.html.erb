@@ -10,15 +10,6 @@
   <%= @project.description %>
 </p>
 
-<<<<<<< HEAD
-<% @rels.each do |rel| %>
-<p>
-<b>Username: </b> <%=User.find(rel.user_id).username%>
-<b> Role: </b> <%= rel.role %>
-</p>
-<% end %>
-
-=======
 <h1>Listing tasks</h1>
 
 <table>
@@ -101,7 +92,6 @@
 </table>
 
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
->>>>>>> new_branch_name
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

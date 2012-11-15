@@ -11,11 +11,6 @@
 
 class Project < ActiveRecord::Base
   attr_accessible :description, :name
-<<<<<<< HEAD
-  has_many :user_project_rels
-  has_many :resources, :through=> :user_project_rels
-  has_many :users, :through=> :user_project_rels
-=======
   has_many :users,:through => :user_project_rels
   has_many :user_project_rels,:dependent => :destroy
   has_many :task_user_proj_rels,:through => :user_project_rels
@@ -23,5 +18,4 @@ class Project < ActiveRecord::Base
   has_many :bugs, :through => :task_user_proj_rels
     has_many :resources,:through => :project_resource_rels
     has_many :project_resource_rels,:dependent => :destroy
->>>>>>> new_branch_name
 end
