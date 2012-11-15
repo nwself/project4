@@ -16,4 +16,6 @@ class Project < ActiveRecord::Base
   has_many :task_user_proj_rels,:through => :user_project_rels
   has_many :tasks, :through => :task_user_proj_rels
   has_many :bugs, :through => :task_user_proj_rels
+    has_many :resources,:through => :project_resource_rels
+    has_many :project_resource_rels,:dependent => :destroy
 end

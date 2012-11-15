@@ -18,6 +18,7 @@ Project4::Application.routes.draw do
   resources :projects do
     resources :tasks
     resources :bugs
+    resources :resources
   end
   
   root :to => 'projects#index'

@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107232714) do
+ActiveRecord::Schema.define(:version => 20121115030206) do
+
+  create_table "bugs", :force => true do |t|
+    t.string   "title"
+    t.string   "task_or_bug"
+    t.string   "status"
+    t.string   "priority"
+    t.float    "percentage_completed"
+    t.date     "due_date"
+    t.date     "estimated_date"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "project_resource_rels", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "resource_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -21,11 +40,11 @@ ActiveRecord::Schema.define(:version => 20121107232714) do
   end
 
   create_table "resources", :force => true do |t|
+    t.string   "title"
     t.string   "content"
     t.string   "permissions"
-    t.integer  "user_project_rel_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "task_bugs", :force => true do |t|
@@ -49,6 +68,18 @@ ActiveRecord::Schema.define(:version => 20121107232714) do
 
   add_index "task_user_proj_rels", ["task_bug_id"], :name => "index_task_user_proj_rels_on_task_bug_id"
   add_index "task_user_proj_rels", ["user_project_rel_id"], :name => "index_task_user_proj_rels_on_user_project_rel_id"
+
+  create_table "tasks", :force => true do |t|
+    t.string   "title"
+    t.string   "task_or_bug"
+    t.string   "status"
+    t.string   "priority"
+    t.float    "percentage_completed"
+    t.date     "due_date"
+    t.date     "estimated_date"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "user_project_rels", :force => true do |t|
     t.integer  "user_id"

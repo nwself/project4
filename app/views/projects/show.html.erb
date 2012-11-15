@@ -71,10 +71,27 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
+<br/>
 <%= link_to 'New Bug', new_project_bug_path(@project) %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @project.resources.each do |resource| %>
+  <tr>
+    <td><%= resources.title %></td>
+    <td><%= link_to 'Show', [@project,resource] %></td>
+    <td><%= link_to 'Edit', edit_project_resource_path(resource) %></td>
+    <td><%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Resource', new_project_resource_path(@project) %>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

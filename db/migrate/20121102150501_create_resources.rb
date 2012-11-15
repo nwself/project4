@@ -1,9 +1,9 @@
 class CreateResources < ActiveRecord::Migration
   def change
     create_table :resources do |t|
+      t.string :title
       t.string :content
-      t.string :permissions
-      t.integer :user_project_rel_id
+      t.string :permissions 
 
       t.timestamps
     end
