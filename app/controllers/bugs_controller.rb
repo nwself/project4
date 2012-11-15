@@ -4,8 +4,8 @@ class BugsController < ApplicationController
   def index
     #@bugs = Bug.find_all_by_task_or_bug('B')  @bugs = Bug.all
     @project = Project.find(params[:project_id])
-@project.bugs
-@project.tasks
+    @project.bugs
+    @project.tasks
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +17,7 @@ class BugsController < ApplicationController
   # GET /bugs/1.json
   def show
     @bug = Bug.find(params[:id])
-    @user = @bug.user_project_rels
+    @project = Project.find(params[:project_id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bug }
@@ -28,7 +28,7 @@ class BugsController < ApplicationController
   # GET /bugs/new.json
   def new
     @bug = Bug.new
-
+    @project = Project.find(params[:project_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @bug }
@@ -38,16 +38,18 @@ class BugsController < ApplicationController
   # GET /bugs/1/edit
   def edit
     @bug = Bug.find(params[:id])
+     @project = Project.find(params[:project_id])
   end
 
   # POST /bugs
   # POST /bugs.json
   def create
-    @bug = Bug.new(params[:bug])
+    @rel=UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id])
+    @bug= @rel.bugs.create(params[:bug])
 
     respond_to do |format|
       if @bug.save
-        format.html { redirect_to @bug, notice: 'Bug was successfully created.' }
+        format.html { redirect_to  project_path(params[:project_id]) , notice: 'Bug was successfully created.' }
         format.json { render json: @bug, status: :created, location: @bug }
       else
         format.html { render action: "new" }
@@ -63,7 +65,7 @@ class BugsController < ApplicationController
 
     respond_to do |format|
       if @bug.update_attributes(params[:bug])
-        format.html { redirect_to @bug, notice: 'Bug was successfully updated.' }
+        format.html { redirect_to  project_path(params[:project_id]), notice: 'Bug was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,7 +81,7 @@ class BugsController < ApplicationController
     @bug.destroy
 
     respond_to do |format|
-      format.html { redirect_to bugs_url }
+      format.html { redirect_to  project_path(params[:project_id]) }
       format.json { head :no_content }
     end
   end
