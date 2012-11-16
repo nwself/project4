@@ -11,7 +11,7 @@
 #
 
 class Resource < ActiveRecord::Base
-  attr_accessible :content, :permissions
+  attr_accessible :content, :permissions, :title
     has_one :project,:through => :project_resource_rels
-    has_many :project_resource_rels,:dependent => :destroy
+    has_one :project_resource_rel,:dependent => :destroy
 end

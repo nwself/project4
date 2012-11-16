@@ -1,4 +1,4 @@
-<%= form_for(@resource) do |f| %>
+<%= form_for(([@project, @resource]) ) do |f| %>
   <% if @resource.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+<div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
   <div class="field">
     <%= f.label :content %><br />
     <%= f.text_field :content %>
@@ -18,10 +21,6 @@
   <div class="field">
     <%= f.label :permissions %><br />
     <%= f.text_field :permissions %>
-  </div>
-  <div class="field">
-    <%= f.label :user_project_rel_id %><br />
-    <%= f.number_field :user_project_rel_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

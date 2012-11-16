@@ -6,7 +6,11 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = current_user.projects
-
+    
+    
+    @projects.each do |project| 
+      project.user_project_rels 
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -85,7 +89,7 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to projects_url }  
       format.json { head :no_content }
     end
   end

@@ -27,6 +27,7 @@ class ResourcesController < ApplicationController
   # GET /resources/new
   # GET /resources/new.json
   def new
+    @project = Project.find(params[:project_id])
     @resource = Resource.new
 
     respond_to do |format|
@@ -37,17 +38,19 @@ class ResourcesController < ApplicationController
 
   # GET /resources/1/edit
   def edit
+    @project = Project.find(params[:project_id])
     @resource = Resource.find(params[:id])
   end
 
   # POST /resources
   # POST /resources.json
   def create
-    @resource = Resource.new(params[:resource])
-
+    @project = Project.find(params[:project_id])
+    @resource = @project.resources.create(params[:resource])
+    
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
+        format.html { redirect_to project_path(params[:project_id]) , notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
         format.html { render action: "new" }

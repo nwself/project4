@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20121115030206) do
     t.string   "title"
     t.string   "content"
     t.string   "permissions"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "task_bugs", :force => true do |t|

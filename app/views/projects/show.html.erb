@@ -73,17 +73,21 @@
 </table>
 <br/>
 <%= link_to 'New Bug', new_project_bug_path(@project) %>
-
+<h1>Listing Resources	</h1>
 <table>
   <tr>
     <th>Title</th>
+    <th>Content</th>
+    <th>Permissions</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 <% @project.resources.each do |resource| %>
   <tr>
-    <td><%= resources.title %></td>
+    <td><%= resource.title %></td>
+    <td><%= resource.content %></td>
+    <td><%= resource.permissions %></td>
     <td><%= link_to 'Show', [@project,resource] %></td>
     <td><%= link_to 'Edit', edit_project_resource_path(resource) %></td>
     <td><%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
