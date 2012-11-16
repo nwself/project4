@@ -1,7 +1,7 @@
 class Bug < ActiveRecord::Base
   set_table_name "task_bugs"
   
-  has_many :task_user_proj_rels, :foreign_key => "task_bug_id"
+  has_many :task_user_proj_rels, :foreign_key => "task_bug_id",:dependent => :destroy
   has_many :user_project_rels, :through => :task_user_proj_rels
   has_many :users, :through => :user_project_rels
   has_many  :project, :through => :user_project_rels

@@ -16,6 +16,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
+    @project = Project.find(params[:project_id])
     @resource = Resource.find(params[:id])
 
     respond_to do |format|
@@ -63,10 +64,10 @@ class ResourcesController < ApplicationController
   # PUT /resources/1.json
   def update
     @resource = Resource.find(params[:id])
-
+    @project = Project.find(params[:project_id])
     respond_to do |format|
       if @resource.update_attributes(params[:resource])
-        format.html { redirect_to @resource, notice: 'Resource was successfully updated.' }
+        format.html { redirect_to project_path(params[:project_id]) , notice: 'Resource was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,7 +83,7 @@ class ResourcesController < ApplicationController
     @resource.destroy
 
     respond_to do |format|
-      format.html { redirect_to resources_url }
+      format.html { redirect_to project_path(params[:project_id])  }
       format.json { head :no_content }
     end
   end

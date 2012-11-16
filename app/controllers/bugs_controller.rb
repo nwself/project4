@@ -46,7 +46,7 @@ class BugsController < ApplicationController
   def create
     @rel=UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id])
     @bug= @rel.bugs.create(params[:bug])
-
+    @project = Project.find(params[:project_id])
     respond_to do |format|
       if @bug.save
         format.html { redirect_to  project_path(params[:project_id]) , notice: 'Bug was successfully created.' }
@@ -62,7 +62,7 @@ class BugsController < ApplicationController
   # PUT /bugs/1.json
   def update
     @bug = Bug.find(params[:id])
-
+    @project = Project.find(params[:project_id])
     respond_to do |format|
       if @bug.update_attributes(params[:bug])
         format.html { redirect_to  project_path(params[:project_id]), notice: 'Bug was successfully updated.' }

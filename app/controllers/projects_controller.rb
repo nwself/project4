@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     @project.tasks
     @project.bugs
     @project.resources
-
+    @project.user_project_rels
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

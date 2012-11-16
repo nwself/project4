@@ -15,13 +15,19 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %> 
   </div>
+ <% if @is_admin %> 
+   <div class="field">
+    <%= f.label :assigned_to %><br />
+  	<%= f.collection_select :task_or_bug, @project.users, :id, :username %>
+  <% end %>
+  </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.select :status, ["Select","Open","Inprogress","Complete"] %>
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-    <%= f.text_field :priority %>
+    <%= f.select :priority, ["Select","High","Medium","Low"] %>
   </div>
   <div class="field">
     <%= f.label :percentage_completed %><br />

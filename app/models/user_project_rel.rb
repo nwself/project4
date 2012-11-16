@@ -4,5 +4,10 @@ class UserProjectRel < ActiveRecord::Base
   has_many :task_user_proj_rels,:dependent => :destroy
   has_many :tasks, :through => :task_user_proj_rels
   has_many :bugs, :through => :task_user_proj_rels
-    attr_accessible :role, :user_id, :project_id
+    attr_accessible :role, :user_id, :project_id, 
+    
+    def username()
+      User.find(user_id).username
+    end
+    
 end

@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>User</th>
-    <th>Project</th>
     <th>Role</th>
     <th></th>
     <th></th>
@@ -13,9 +12,7 @@
 <% @user_project_rels.each do |user_project_rel| %>
   <tr>
     <td><%= user_project_rel.user %></td>
-    <td><%= user_project_rel.project %></td>
     <td><%= user_project_rel.role %></td>
-    <td><%= link_to 'Show', user_project_rel %></td>
     <td><%= link_to 'Edit', edit_user_project_rel_path(user_project_rel) %></td>
     <td><%= link_to 'Destroy', user_project_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

@@ -16,9 +16,10 @@ Project4::Application.routes.draw do
   match '/:project_id/add_user', to: 'user_project_rels#new'
   
   resources :projects do
-    resources :tasks
-    resources :bugs
-    resources :resources
+    resources :tasks, :except => :index
+    resources :bugs, :except => :index
+    resources :resources, :except => :index
+    resources :users, :controller => "user_project_rels" , :except => [:show]
   end
   
   root :to => 'projects#index'
