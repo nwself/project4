@@ -1,4 +1,15 @@
 class UserProjectRelsController < ApplicationController
+  
+  
+  # GET /to-do
+  # GET /to-do.json
+  def todo
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @project }
+    end
+  end
+  
   # GET /user_project_rels
   # GET /user_project_rels.json
   def index

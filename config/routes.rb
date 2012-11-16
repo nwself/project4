@@ -14,6 +14,7 @@ Project4::Application.routes.draw do
 
   resources :user_project_rels, only: [:new, :edit, :create, :destroy]
   match '/:project_id/add_user', to: 'user_project_rels#new'
+  match '/to-do', to: 'user_project_rels#todo'
   
   resources :projects do
     resources :tasks, :except => :index

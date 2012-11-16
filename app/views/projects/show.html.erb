@@ -1,16 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @project.description %>
-</p>
-<%= link_to 'Edit', edit_project_path(@project) %>
-<h1>Listing tasks</h1>
+<h1>
+  <%= @project.name %>  
+</h1>
+<h2>Tasks</h2>
 
 <table>
   <tr>
@@ -41,8 +32,8 @@
 </table>
 
 <br />
-<%= link_to 'New Task', new_project_task_path(@project) %>
-<h1>Listing bugs</h1>
+<%= link_to_unless !@is_admin,  'New Task', new_project_task_path(@project) %>
+<h2>Bugs</h2>
 
 <table>
   <tr>
@@ -72,8 +63,8 @@
 <% end %>
 </table>
 <br/>
-<%= link_to 'New Bug', new_project_bug_path(@project) %>
-<h1>Listing Resources	</h1>
+<%= link_to_unless !@is_admin,  'New Bug', new_project_bug_path(@project) %>
+<h2>Resources</h2>
 <table>
   <tr>
     <th>Title</th>
@@ -98,7 +89,7 @@
 
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
 
-<h1>Listing Users</h1>
+<h2>Users</h2>
 
 <table>
   <tr>

@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th></th>
     <th>Name</th>
     <th>Description</th>
     <th>Role</th>
@@ -12,14 +11,11 @@
     <th></th>
   </tr>
 
-<% @projects.each do |project| %>
+<% current_user.projects.each do |project| %>
   <tr>
-    <td><%= project.id %></td>
     <td><%= project.name %></td>
     <td><%= project.description %></td>
-    <% project.user_project_rels.each do |rels| %>
-    <td><%= rels.role %></td>
-    <% end %>
+    <td><%= project.user_project_rels.find_by_user_id(current_user).role %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
