@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  
+   
   # GET /tasks
   # GET /tasks.json
   def index
@@ -29,8 +31,10 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
+    @is_admin = UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id]).role == "Administrator"
      @task = Task.new
      @project = Project.find(params[:project_id])
+#     @is_admin = UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id]).role == "Administrator"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -39,6 +43,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    @is_admin = UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id]).role == "Administrator"
     @task = Task.find(params[:id])
      @project = Project.find(params[:project_id])
   end
@@ -46,8 +51,10 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @rel=UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id])
+    @is_admin = UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id]).role == "Administrator"
+    @rel=UserProjectRel.find_by_user_id_and_project_id(params[:task][:task_or_bug],params[:project_id])
     @task = @rel.tasks.create(params[:task])
+    @project = Project.find(params[:project_id])
     
     respond_to do |format|
       if @rel.save
@@ -64,8 +71,9 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update
+    @is_admin = UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id]).role == "Administrator"
     @task = Task.find(params[:id])
-
+    @project = Project.find(params[:project_id])
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to project_path(params[:project_id]), notice: 'Task was successfully updated.' }

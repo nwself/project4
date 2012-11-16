@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
+    <%= f.select :status, ["Select","Open","Inprogress","Complete"] %>
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-    <%= f.text_field :priority %>
+    <%= f.select :priority, ["Select","High","Medium","Low"] %>
   </div>
   <div class="field">
     <%= f.label :percentage_completed %><br />

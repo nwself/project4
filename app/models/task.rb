@@ -17,14 +17,15 @@
 class Task < ActiveRecord::Base
   set_table_name "task_bugs"
   
-  has_many :task_user_proj_rels, :foreign_key => "task_bug_id"
+  has_many :task_user_proj_rels, :foreign_key => "task_bug_id",:dependent => :destroy
   has_many :user_project_rels, :through => :task_user_proj_rels
   has_many :users, :through => :user_project_rels
   has_many :project, :through => :user_project_rels
   
-  attr_accessible :due_date, :estimated_date, :percentage_completed, :priority, :status, :task_or_bug, :title
+  attr_accessible :due_date, :estimated_date, :percentage_completed, :priority, :status, :task_or_bug, :title, :owner
   
   validates :title, :status, :priority, :due_date, :presence=> true
+   validates :percentage_completed, :numericality => { :only_integer => true ,:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
   validates :title, :length => { :maximum => 250 }
   validates :status, :inclusion => { :in => %w(Open Inprogress Complete),
     :message => "%{value} is not a valid status" }    
