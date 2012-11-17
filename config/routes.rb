@@ -13,6 +13,7 @@ Project4::Application.routes.draw do
 
 
   resources :task_user_proj_rels, only: [:new, :edit, :create, :destroy]
+  resources :user_project_rels, only: [:new, :edit, :create, :destroy]
   match '/:project_id/add_user', to: 'user_project_rels#new'
   match '/to-do', to: 'user_project_rels#todo'
   
@@ -21,7 +22,6 @@ Project4::Application.routes.draw do
     resources :bugs, :except => :index
     resources :resources, :except => :index
     resources :users, :controller => "user_project_rels" , :except => [:show]
-    resources :user_project_rels, only: [:new, :edit, :create, :destroy]
   end
   
   root :to => 'projects#index'
