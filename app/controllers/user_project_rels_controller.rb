@@ -39,8 +39,9 @@ class UserProjectRelsController < ApplicationController
   # GET /user_project_rels/new
   # GET /user_project_rels/new.json
   def new
-        @project = Project.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     @user_project_rel = UserProjectRel.new
+    @user_list = User.where("id NOT IN (?)",@project.users.map)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,7 +58,7 @@ class UserProjectRelsController < ApplicationController
   # POST /user_project_rels
   # POST /user_project_rels.json
   def create
-        @project = Project.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     @user_project_rel = UserProjectRel.new(params[:user_project_rel])
 
     respond_to do |format|
