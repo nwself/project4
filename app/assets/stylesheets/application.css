@@ -13,7 +13,17 @@
  */
  @import "bootstrap";
  
- /* container */
+ /* containers */
+#container{
+float: left;
+	width: 1024px;
+	padding: 0px 20px 0px 0px;
+	overflow: hidden;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 10px;
+	text-align: left;
+}
 #page-container{
 float: center;
 	width: 970px;
@@ -74,4 +84,19 @@ height: 25px;
 {
 	padding: 0px 0px 0px 0px;
 }
-
+/*projects page table*/
+#tab
+{
+	margin: 7px;
+	width: auto;
+	text-align: left;
+}
+#tab th
+{
+	font-weight: bold;
+	padding: 1px 1px;
+}
+#tab td
+{
+	padding: 1px 15px 1px 1px;
+}

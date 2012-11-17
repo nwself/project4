@@ -2,10 +2,6 @@
 <p id="notice"><%= notice %></p>
 <h2> Summary of <%= @project.name %></h2>
 </p>
-<p>
-  <b>Description:</b>
-  <%= @project.description %> <%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_path(@project) %>
-</p>
 <div id="page-container">
 <div id="other-left">
 <h3 align="center"><u>Tasks</u></h3>

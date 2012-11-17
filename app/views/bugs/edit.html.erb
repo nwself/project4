@@ -1,6 +1,5 @@
-<h1>Editing bug</h1>
+<h2>Edit Bug: <%= @bug.title %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@project,@bug] %> |
-<%= link_to 'Back', project_path(@project) %>
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> |<%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,@bug] %>
