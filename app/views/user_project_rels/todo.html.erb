@@ -2,7 +2,7 @@
 <% current_user.projects.each do |project| %>
 
 <h1>
-  <%= project.name %>  
+  <%= link_to project.name, "projects/#{project.id}"  %>  
   (<%= project.user_project_rels.find_by_user_id(current_user).role %>)
 </h1>
 

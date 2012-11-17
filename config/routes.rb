@@ -1,17 +1,18 @@
 Project4::Application.routes.draw do
 
 
-  resources :tasks
-  resources :task_user_proj_rels
+  # resources :tasks
+  # resources :task_user_proj_rels
 
-  resources :user_project_rels
+  # resources :user_project_rels
 
   devise_for :users
 
-  resources :resources
+  # resources :resources
   
 
 
+  resources :task_user_proj_rels, only: [:new, :edit, :create, :destroy]
   resources :user_project_rels, only: [:new, :edit, :create, :destroy]
   match '/:project_id/add_user', to: 'user_project_rels#new'
   match '/to-do', to: 'user_project_rels#todo'

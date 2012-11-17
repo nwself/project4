@@ -13,15 +13,11 @@
 
   <div class="field">
     <%= f.label :user %><br />
-    <%= f.text_field :user %>
+    <%= f.collection_select :project, User.all, :id, :username %>
   </div>
-  <div class="field">
-    <%= f.label :project %><br />
-    <%= f.text_field :project %>
-  </div>
-  <div class="field">
+    <div class="field">
     <%= f.label :role %><br />
-    <%= f.text_field :role %>
+    <%= f.select :role, ["Administrator","High","Medium","Low"] %>
   </div>
   <div class="actions">
     <%= f.submit %>
