@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-
+    @isAdmin = @project.user_project_rels.find_by_user_id(current_user).role== "Administrator" 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

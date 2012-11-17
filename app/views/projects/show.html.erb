@@ -26,13 +26,19 @@
     <td><%= task.due_date %></td>
     <td><%= task.estimated_date %></td>
     <td><%= link_to 'Edit', edit_project_task_path(@project,task) %></td>
+    <% if @isAdmin %>
     <td><%= link_to 'Destroy', [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-<%= link_to_unless @is_admin,  'New Task', new_project_task_path(@project) %>
+<% if @isAdmin %>
+<%= link_to 'New Task', new_project_task_path(@project) %>
+<% end %>
 <h2>Bugs</h2>
 
 <table>
@@ -56,12 +62,18 @@
     <td><%= bug.due_date %></td>
     <td><%= bug.estimated_date %></td>
     <td><%= link_to 'Edit', edit_project_bug_path(@project,bug) %></td>
+    <% if @isAdmin %>
     <td><%= link_to 'Destroy', [@project,bug], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 <br/>
-<%= link_to_unless @is_admin,  'New Bug', new_project_bug_path(@project) %>
+<% if @isAdmin %>
+<%= link_to 'New Bug', new_project_bug_path(@project) %>
+<% end %>
 <h2>Resources</h2>
 <table>
   <tr>
@@ -77,12 +89,15 @@
     <td><%= resource.content %></td>
     <td><%= resource.permissions %></td>
     <td><%= link_to 'Edit',  edit_project_resource_path(@project,resource) %></td>
+    <% if @isAdmin %>
     <td><%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 <br/>
-
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
 
 <h2>Users</h2>
@@ -100,12 +115,17 @@
   <tr>
     <td><%= user_project_rel.username %></td>
     <td><%= user_project_rel.role %></td>
+    <% if @isAdmin %>
     <td><%= link_to 'Edit', edit_user_project_rel_path(user_project_rel) %></td>
     <td><%= link_to 'Destroy', user_project_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<% if @isAdmin %>
 <%= link_to 'Add User', new_project_user_path(@project) %>
+<% end %>

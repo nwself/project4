@@ -3,7 +3,7 @@
 
 <h1>
   <%= link_to project.name, "projects/#{project.id}"  %>  
-  (<%= project.user_project_rels.find_by_user_id(current_user).role %>)
+  (<%= role = project.user_project_rels.find_by_user_id(current_user).role %>)
 </h1>
 
 <h2>Tasks</h2>
@@ -23,21 +23,26 @@
 
 <% project.tasks.each do |task| %>
   <tr>
-    <td><%= task.title %></td>
+  	<td><%= link_to task.title, [project,task] %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
     <td><%= task.percentage_completed %></td>
     <td><%= task.due_date %></td>
     <td><%= task.estimated_date %></td>
-    <td><%= link_to 'Show', [project,task] %></td>
     <td><%= link_to 'Edit', edit_project_task_path(project,task) %></td>
+    <%if role=="Administrator" %>
     <td><%= link_to 'Destroy', [project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%else%>
+    <td/>
+    <%end%>
   </tr>
 <% end %>
 </table>
 
 <br />
+<%if role=="Administrator" %>
 <%= link_to   'New Task', new_project_task_path(project) %>
+<%end%>
 <h2>Bugs</h2>
 
 <table>
@@ -55,20 +60,25 @@
 
 <% project.bugs.each do |bug| %>
   <tr>
-    <td><%= bug.title %></td>
+  	<td><%= link_to bug.title, [project,bug] %></td>
     <td><%= bug.status %></td>
     <td><%= bug.priority %></td>
     <td><%= bug.percentage_completed %></td>
     <td><%= bug.due_date %></td>
     <td><%= bug.estimated_date %></td>
-    <td><%= link_to 'Show', [project,bug] %></td>
     <td><%= link_to 'Edit', edit_project_bug_path(project,bug) %></td>
-    <td><%= link_to 'Destroy', [project,bug], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%if role=="Administrator" %>
+    <td><%= link_to 'Destroy', [project,bug] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%else%>
+    <td/>
+    <%end%>
   </tr>
 <% end %>
 </table>
 <br />
+<%if role=="Administrator" %>
 <%= link_to   'New Bug', new_project_bug_path(project) %>
+<%end%>
 
 <% end %>
 </table>
