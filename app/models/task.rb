@@ -27,7 +27,7 @@ class Task < ActiveRecord::Base
   validates :title, :status, :priority, :due_date, :presence=> true
    validates :percentage_completed, :numericality => { :only_integer => true ,:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
   validates :title, :length => { :maximum => 250 }
-  validates :status, :inclusion => { :in => %w(Open Inprogress Complete),
+  validates :status, :inclusion => { :in => ['Open', 'In Progress', 'Complete'],
     :message => "%{value} is not a valid status" }    
   validates :priority, :inclusion => { :in => %w(High Medium Low),
     :message => "%{value} is not a valid status" }
