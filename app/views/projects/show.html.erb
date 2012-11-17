@@ -1,3 +1,5 @@
+<%= link_to 'Back to All Projects', projects_path %>
+
 <h1>
   <%= @project.name %>  
 </h1>
@@ -106,7 +108,4 @@
 
 <br />
 
-<%= link_to 'Add Users', new_project_user_path(@project) %>
-
- 
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Add User', new_project_user_path(@project) %>

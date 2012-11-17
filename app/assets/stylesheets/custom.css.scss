@@ -69,3 +69,19 @@ p {
     text-decoration: none;
   }
 }
+
+#username {
+  float: left;
+  margin-top: 9px;
+  margin-right: 10px;
+  font-size: 0.9em;
+  color: lightgray;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  line-height: 1;
+  &:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+}

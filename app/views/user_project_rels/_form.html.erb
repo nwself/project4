@@ -17,7 +17,7 @@
   </div>
     <div class="field">
     <%= f.label :role %><br />
-    <%= f.select :role, ["Administrator","High","Medium","Low"] %>
+    <%= f.select :role, %w(Administrator Developer Tester Client) %>
   </div>
   <div class="actions">
     <%= f.submit %>

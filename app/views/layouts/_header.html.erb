@@ -2,6 +2,7 @@
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "project 4", root_path, id: "logo" %>
+      <%= link_to current_user.username, projects_path, id: "username" %>
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
