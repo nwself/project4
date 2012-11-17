@@ -21,7 +21,7 @@
     <th></th>
   </tr>
 
-<% project.tasks.each do |task| %>
+<% project.tasks.where("user_project_rels.role='"+project.user_project_rels.find_by_user_id(current_user).role+"'").each do |task| %>
   <tr>
   	<td><%= link_to task.title, [project,task] %></td>
     <td><%= task.status %></td>
@@ -58,7 +58,7 @@
     <th></th>
   </tr>
 
-<% project.bugs.each do |bug| %>
+<% project.bugs.where("user_project_rels.role='"+project.user_project_rels.find_by_user_id(current_user).role+"'").each do |bug| %>
   <tr>
   	<td><%= link_to bug.title, [project,bug] %></td>
     <td><%= bug.status %></td>
