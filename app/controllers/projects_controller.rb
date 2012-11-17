@@ -2,6 +2,14 @@ class ProjectsController < ApplicationController
 
   before_filter :authenticate_user!
 
+  def feed
+    @projects = current_user.projects
+
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
+  end
+
   # GET /projects
   # GET /projects.json
   def index

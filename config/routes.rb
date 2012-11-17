@@ -26,6 +26,10 @@ Project4::Application.routes.draw do
   
   root :to => 'projects#index'
 
+  match '/feed' => 'projects#feed',
+      as: :feed,
+      defaults: { format: 'rss' }
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
