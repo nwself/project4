@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'devise'
 gem 'bootstrap-sass', '2.0.4'
+gem 'acts_as_commentable_with_threading'
+gem 'acts-as-taggable-on', '~> 2.3.1'
 
 group :development do
 	gem 'sqlite3'
@@ -24,7 +26,3 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-group :production do
-  gem 'pg', '0.12.2'
-end

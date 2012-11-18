@@ -135,3 +135,10 @@
 <%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), projects_path %>
 </p>
 </div>
+
+<div id="comments">
+  <%= form_for(@comment, url: comment_project_path) do |f| %>
+    <%= f.label 'Add a comment...' %><br />
+    <%= f.text_area :body %>
+  <% end %>
+</div>

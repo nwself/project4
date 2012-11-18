@@ -22,4 +22,7 @@ class Project < ActiveRecord::Base
   has_many :bugs, :through => :task_user_proj_rels
   has_many :resources,:through => :project_resource_rels
   has_many :project_resource_rels,:dependent => :destroy
+
+  acts_as_commentable
+  acts_as_taggable # gives us a project.tag_list
 end

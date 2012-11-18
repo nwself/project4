@@ -22,6 +22,10 @@ Project4::Application.routes.draw do
     resources :bugs, :except => :index
     resources :resources, :except => :index
     resources :users, :controller => "user_project_rels" , :except => [:show]
+
+    member do
+      post 'comment'
+    end
   end
   
   root :to => 'projects#index'

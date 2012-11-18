@@ -3,7 +3,7 @@
 # Table name: task_bugs
 #
 #  id                   :integer          not null, primary key
-#  title                :string(255)  
+#  title                :string(255)
 #  status               :string(255)
 #  priority             :string(255)
 #  due_date             :date
