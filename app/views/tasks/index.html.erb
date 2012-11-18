@@ -1,35 +1,36 @@
-<h1>Listing tasks</h1>
-
-<table>
+<% role = Project.find(params[:project_id]).user_project_rels.find_by_user_id(current_user).role %>
+<% @project = Project.find(params[:project_id]) %>
+<h3 align="center"><u>Tasks</u></h3>
+<table id="hor-minimalist">
   <tr>
-    <th>Title</th>
-    <th>Task or bug</th>
-    <th>Status</th>
-    <th>Priority</th>
-    <th>Percentage completed</th>
-    <th>Due date</th>
-    <th>Estimated date</th>
-    <th></th>
+    <th scope="col">Title</th>
+    <th scope="col">Status</th>
+    <th scope="col">Priority</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @project.tasks.each do |task| %>
   <tr>
-    <td><%= task.title %></td>
-    <td><%= task.task_or_bug %></td>
+    <td scope="row"><%= task.title %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
-    <td><%= task.percentage_completed %></td>
-    <td><%= task.due_date %></td>
-    <td><%= task.estimated_date %></td>
-    <td><%= link_to 'Show', [@project,task] %></td>
-    <td><%= link_to 'Edit', edit_project_task_path(@project,task) %></td>
-    <td><%= link_to 'Destroy', [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,task] %></td>
+    <% if !(role=="Client") %>
+    <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_task_path(@project,task) %></td>
+    <% else %>
+    <td/>
+    <%end%>
+    <% if role=="Administrator" %>
+    <td><%= link_to  image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
-
 <br />
-
-<%= link_to 'New Task', new_project_task_path %>
+<% if role=="Administrator" %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
+<%= link_to 'New Task', new_project_task_path(@project) %>
+<% end %>

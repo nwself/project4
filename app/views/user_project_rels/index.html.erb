@@ -1,24 +1,31 @@
-<h1>Listing user_project_rels</h1>
+<% role = Project.find(params[:project_id]).user_project_rels.find_by_user_id(current_user).role %>
+<% @project = Project.find(params[:project_id]) %>
 
-<table>
+<h3 align="center"><u>Users</u></h3>
+<table id="hor-minimalist">
   <tr>
-    <th>User</th>
-    <th>Role</th>
+    <th scope="col">User</th>
+    <th scope="col">Role</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @user_project_rels.each do |user_project_rel| %>
+<% @project.user_project_rels.each do |user_project_rel| %>
   <tr>
-    <td><%= user_project_rel.user %></td>
+    <td><%= user_project_rel.username %></td>
     <td><%= user_project_rel.role %></td>
-    <td><%= link_to 'Edit', edit_user_project_rel_path(user_project_rel) %></td>
-    <td><%= link_to 'Destroy', user_project_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if role=="Administrator" %>
+    	<td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), project_user_path(@project,user_project_rel), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New User project rel', new_user_project_rel_path %>
+<% if role=="Administrator" %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
+<%= link_to 'Add User', new_project_user_path(@project) %>
+<% end %>
