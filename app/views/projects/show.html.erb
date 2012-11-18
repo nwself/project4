@@ -1,6 +1,7 @@
 <br/>
-<p id="notice"><%= notice %></p>
 <h2> Summary of <%= @project.name %></h2>
+<%= role = @project.user_project_rels.find_by_user_id(current_user).role %>
+<p id="notice"><%= notice %></p>
 </p>
 <div id="page-container">
 <div id="other-left">
@@ -20,9 +21,13 @@
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,task] %></td>
+    <% if !(role=="Client") %>
     <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_task_path(@project,task) %></td>
-    <% if @isAdmin %>
-    <td><%= link_to link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <%end%>
+    <% if role=="Administrator" %>
+    <td><%= link_to  image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% else %>
     <td/>
     <% end %>
@@ -30,7 +35,7 @@
 <% end %>
 </table>
 <br />
-<% if @isAdmin %>
+<% if role=="Administrator" %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Task', new_project_task_path(@project) %>
 <% end %>
@@ -53,9 +58,13 @@
     <td><%= bug.status %></td>
     <td><%= bug.priority %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,bug] %></td>
+    <% if !(role=="Client") %>
     <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_bug_path(@project,bug) %></td>
-    <% if @isAdmin %>
-    <td><%= link_to link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,bug], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <%end%>
+    <% if role=="Administrator" %>
+    <td><%= link_to  image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,bug], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% else %>
     <td/>
     <% end %>
@@ -63,7 +72,7 @@
 <% end %>
 </table>
 <br/>
-<% if @isAdmin %>
+<% if role=="Administrator" %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Bug', new_project_bug_path(@project) %>
 <% end %>
@@ -83,18 +92,21 @@
   <tr>
     <td scope="col"><%= resource.title %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,resource] %></td>
+    <% if !(role=="Client") %>
     <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'),  edit_project_resource_path(@project,resource) %></td>
-    <% if @isAdmin %>
-    <td><%= link_to link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% else %>
+    <td/>
     <td/>
     <% end %>
   </tr>
 <% end %>
 </table>
 <br/>
+<% if !(role=="Client") %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
+<% end %>
 </div>
 
 <div id="other-right">
@@ -112,7 +124,7 @@
   <tr>
     <td><%= user_project_rel.username %></td>
     <td><%= user_project_rel.role %></td>
-    <% if @isAdmin %>
+    <% if role=="Administrator" %>
     	<td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), project_user_path(@project,user_project_rel), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% else %>
     <td/>
@@ -122,7 +134,7 @@
 </table>
 
 <br />
-<% if @isAdmin %>
+<% if role=="Administrator" %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'Add User', new_project_user_path(@project) %>
 <% end %>
