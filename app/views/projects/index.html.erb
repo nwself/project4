@@ -1,26 +1,32 @@
-<h1>Projects</h1>
-
-<table>
+<h1>Welcome!</h1>
+<h2 align="left"> Your current projects </h2>
+<div id="container">
+<table id="tab">
+<thead>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Role</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+     <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">Role</th>
+</tr>
+</thead>
+<tbody>
 <% current_user.projects.each do |project| %>
   <tr>
-    <td><%= link_to project.name, project %></td>
-    <td><%= project.description %></td>
-    <td><%= project.user_project_rels.find_by_user_id(current_user).role %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <td scope="row"><%= project.name %></td>
+    <td scope="row" width="480px"><%= project.description %></td>
+    <td scope="row"><%= project.user_project_rels.find_by_user_id(current_user).role %></td>
+    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), project %></td>
+    <% if project.user_project_rels.find_by_user_id(current_user).role== "Administrator" %>
+    <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_path(project) %></td>
+    <td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/><td/>
+    <% end %>
 <% end %>
+</tbody>
 </table>
 
 <br />
-
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Project', new_project_path %>
+</div>

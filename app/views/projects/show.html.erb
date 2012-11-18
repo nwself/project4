@@ -1,96 +1,108 @@
-<%= link_to 'Back to All Projects', projects_path %>
-
-<h1>
-  <%= @project.name %>  
-</h1>
-<h2>Tasks</h2>
-
-<table>
+<br/>
+<p id="notice"><%= notice %></p>
+<h2> Summary of <%= @project.name %></h2>
+</p>
+<div id="page-container">
+<div id="other-left">
+<h3 align="center"><u>Tasks</u></h3>
+<table id="hor-minimalist">
   <tr>
-    <th>Title</th>
-    <th>Status</th>
-    <th>Priority</th>
-    <th>Percentage completed</th>
-    <th>Due date</th>
-    <th>Estimated date</th>
+    <th scope="col">Title</th>
+    <th scope="col">Status</th>
+    <th scope="col">Priority</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @project.tasks.each do |task| %>
   <tr>
-    <td><%= link_to task.title, [@project,task] %></td>
+    <td scope="row"><%= task.title %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
-    <td><%= task.percentage_completed %></td>
-    <td><%= task.due_date %></td>
-    <td><%= task.estimated_date %></td>
-    <td><%= link_to 'Edit', edit_project_task_path(@project,task) %></td>
-    <td><%= link_to 'Destroy', [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,task] %></td>
+    <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_task_path(@project,task) %></td>
+    <% if @isAdmin %>
+    <td><%= link_to link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,task] , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
-
 <br />
-<%= link_to_unless @is_admin,  'New Task', new_project_task_path(@project) %>
-<h2>Bugs</h2>
+<% if @isAdmin %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
+<%= link_to 'New Task', new_project_task_path(@project) %>
+<% end %>
+</div>
 
-<table>
+<div id="other-right">
+<h3 align="center"><u>Bugs</u></h3>
+<table id="hor-minimalist">
   <tr>
-    <th>Title</th>
-    <th>Status</th>
-    <th>Priority</th>
-    <th>Percentage completed</th>
-    <th>Due date</th>
-    <th>Estimated date</th>
+    <th scope="col">Title</th>
+    <th scope="col">Status</th>
+    <th scope="col">Priority</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @project.bugs.each do |bug| %>
   <tr>
-    <td><%= link_to bug.title, [@project,bug] %></td>
+    <td scope="row"><%= bug.title %></td>
     <td><%= bug.status %></td>
     <td><%= bug.priority %></td>
-    <td><%= bug.percentage_completed %></td>
-    <td><%= bug.due_date %></td>
-    <td><%= bug.estimated_date %></td>
-    <td><%= link_to 'Edit', edit_project_bug_path(@project,bug) %></td>
-    <td><%= link_to 'Destroy', [@project,bug], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,bug] %></td>
+    <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_bug_path(@project,bug) %></td>
+    <% if @isAdmin %>
+    <td><%= link_to link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,bug], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 <br/>
-<%= link_to_unless @is_admin,  'New Bug', new_project_bug_path(@project) %>
-<h2>Resources</h2>
-<table>
+<% if @isAdmin %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
+<%= link_to 'New Bug', new_project_bug_path(@project) %>
+<% end %>
+</div>
+</div>
+
+<div id="page-container">
+<div id="other-left">
+<h3 align="center"><u>Resources</u></h3>
+<table id="hor-minimalist">
   <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Permissions</th>
+    <th scope="col">Title</th>
     <th></th>
     <th></th>
   </tr>
 <% @project.resources.each do |resource| %>
   <tr>
-    <td><%= link_to resource.title, [@project,resource] %></td>
-    <td><%= resource.content %></td>
-    <td><%= resource.permissions %></td>
-    <td><%= link_to 'Edit',  edit_project_resource_path(@project,resource) %></td>
-    <td><%= link_to 'Destroy', [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td scope="col"><%= resource.title %></td>
+    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,resource] %></td>
+    <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'),  edit_project_resource_path(@project,resource) %></td>
+    <% if @isAdmin %>
+    <td><%= link_to link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), [@project,resource], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 <br/>
-
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
+</div>
 
-<h2>Users</h2>
-
-<table>
+<div id="other-right">
+<h3 align="center"><u>Users</u></h3>
+<table id="hor-minimalist">
   <tr>
-    <th>User</th>
-    <th>Role</th>
+    <th scope="col">User</th>
+    <th scope="col">Role</th>
     <th></th>
     <th></th>
     <th></th>
@@ -100,12 +112,26 @@
   <tr>
     <td><%= user_project_rel.username %></td>
     <td><%= user_project_rel.role %></td>
-    <td><%= link_to 'Edit', edit_user_project_rel_path(user_project_rel) %></td>
-    <td><%= link_to 'Destroy', user_project_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), edit_user_project_rel_path(user_project_rel) %></td>
+    <% if @isAdmin %>
+   <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_user_project_rel_path(user_project_rel) %></td>
+    <td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), user_project_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+    <td/>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<% if @isAdmin %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'Add User', new_project_user_path(@project) %>
+<% end %>
+</div>
+</div>
+<div>
+<p> 
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), projects_path %>
+</p>
+</div>

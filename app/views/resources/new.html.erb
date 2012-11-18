@@ -1,5 +1,5 @@
-<h1>New resource</h1>
+<h2>Add a new Resource to <%= @project.name %></h2>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', project_path(@project) %>
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %>
