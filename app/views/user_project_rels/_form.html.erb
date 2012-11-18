@@ -1,7 +1,11 @@
-<%= form_for(@user_project_rel) do |f| %>
+<%if @user_list.nil? || @user_list.size==0	 %>
+<div id="error_explanation">
+      <h2>All the users are already added in the current project</h2>
+<%else %>
+<%= form_for(@user_project_rel, :url => (@user_project_rel.persisted? ? project_user_path(@project, @user_project_rel) : project_users_path(@project))) do |f| %>
   <% if @user_project_rel.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user_project_rel.errors.count, "error") %> prohibited this user_project_rel from being saved:</h2>
+      <h2><%= pluralize(@user_project_rel.errors.count, "error") %> prohibited this User from being added:</h2>
 
       <ul>
       <% @user_project_rel.errors.full_messages.each do |msg| %>
@@ -10,10 +14,9 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :user %><br />
-    <%= f.collection_select :project, User.all, :id, :username %>
+    <%= f.label :user_id %><br />
+    <%= f.collection_select :user_id, @user_list , :id, :username %>
   </div>
     <div class="field">
     <%= f.label :role %><br />
@@ -23,3 +26,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+<%end%>

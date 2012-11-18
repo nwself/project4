@@ -112,10 +112,8 @@
   <tr>
     <td><%= user_project_rel.username %></td>
     <td><%= user_project_rel.role %></td>
-    <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), edit_user_project_rel_path(user_project_rel) %></td>
     <% if @isAdmin %>
-   <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_user_project_rel_path(user_project_rel) %></td>
-    <td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), user_project_rel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    	<td><%= link_to image_tag("delete.jpeg", :border=>0, :height => '20px', :width=>'20px'), project_user_path(@project,user_project_rel), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% else %>
     <td/>
     <% end %>
