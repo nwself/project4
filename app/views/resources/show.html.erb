@@ -10,10 +10,12 @@
   <%= @resource.content %>
 </p>
 
+<% if !@resource.attachment_file_size.nil? %>
 <p>
-  <b>Permissions:</b>
-  <%= @resource.permissions %>
+  <b>Document:</b>
+  <%= link_to @resource.attachment_file_name, @resource.attachment.url(:original, false) %>
 </p>
+<%end%>
 
 <%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> |<%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_resource_path(@project,@resource)  %> 
 

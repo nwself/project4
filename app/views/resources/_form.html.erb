@@ -1,4 +1,4 @@
-<%= form_for(([@project, @resource]) ) do |f| %>
+<%= form_for(([@project, @resource]), :html => {:multipart => true} ) do |f| %> 
   <% if @resource.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -15,12 +15,12 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
+    <%= f.label "Supporting Link" %><br />
     <%= f.text_field :content %>
   </div>
   <div class="field">
-    <%= f.label :permissions %><br />
-    <%= f.text_field :permissions %>
+    <%= f.label "Upload document" %><br />
+    <%= f.file_field :attachment %>
   </div>
   <div class="actions">
     <%= f.submit %>

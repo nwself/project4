@@ -10,7 +10,7 @@
     <th></th>
   </tr>
 
-<% @project.tasks.each do |task| %>
+<% @pagination=@project.tasks.paginate(:page => params[:page], :per_page => 10).each do |task| %>
   <tr>
     <td scope="row"><%= task.title %></td>
     <td><%= task.status %></td>
@@ -29,6 +29,7 @@
   </tr>
 <% end %>
 </table>
+<%= will_paginate @pagination %>
 <br />
 <% if role=="Administrator" %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>

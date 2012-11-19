@@ -26,7 +26,7 @@ Project4::Application.routes.draw do
       post 'comment'
     end
 
-    resources :users, :controller => "user_project_rels" , :except => [:show]
+    resources :users, :controller => "user_project_rels" 
 
     member do
       post 'comment'
