@@ -2,6 +2,12 @@ class ProjectsController < ApplicationController
 
   before_filter :authenticate_user!, except: :feed
 
+  def tag
+    project = Project.find(params[:id])
+    project.tag_list = params[:tag]
+    project.save
+  end
+
   def comment
     comment = Comment.build_from(Project.find(params[:id]), 
                                  current_user, 

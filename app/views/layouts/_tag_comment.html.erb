@@ -6,9 +6,7 @@
     <div class="list-comments">
     <%= pluralize(thingy.comment_threads.count, "Comment") %>
     <% thingy.comment_threads.each do |comment| %>
-      <div class="comment-div">
         <%= comment.user.username %> (<%= comment.created_at.strftime("%m-%d-%y %I:%M") %>): <%= comment.body %>
-      </div>
     <% end %>
     </div>
 
@@ -27,6 +25,10 @@
   <div id="other-right">
     <h3 align="center"><u>Tags</u></h3>
     <br />
+
+    <%= thingy.tags.each do |tag| %>
+      tag.name
+    <% end %>
 
     <%= form_for @tag, action: tag_project_path do |f| %>
       Add some tags (comma separated):
