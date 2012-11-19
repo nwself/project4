@@ -11,10 +11,12 @@
   <%= @resource.content %>
 </p>
 
+<% if !@resource.attachment_file_size.nil? %>
 <p>
-  <b>Permissions:</b>
-  <%= @resource.permissions %>
+  <b>Document:</b>
+  <%= link_to @resource.attachment_file_name, @resource.attachment.url(:original, false) %>
 </p>
+<%end%>
 
 
 

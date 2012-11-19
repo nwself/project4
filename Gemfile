@@ -5,6 +5,8 @@ gem 'devise'
 gem 'bootstrap-sass', '2.0.4'
 gem 'acts_as_commentable_with_threading'
 gem 'acts-as-taggable-on', '~> 2.3.1'
+gem 'paperclip'
+gem 'will_paginate'
 
 group :development do
 	gem 'sqlite3'

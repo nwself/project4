@@ -7,7 +7,7 @@
     <th></th>
     <th></th>
   </tr>
-<% @project.resources.each do |resource| %>
+<% @pagination=@project.resources.paginate(:page => params[:page], :per_page => 10).each do |resource| %>
   <tr>
     <td scope="col"><%= resource.title %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,resource] %></td>
@@ -21,6 +21,7 @@
   </tr>
 <% end %>
 </table>
+<%= will_paginate @pagination %>
 <br/>
 <% if !(role=="Client") %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>

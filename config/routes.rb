@@ -16,10 +16,10 @@ Project4::Application.routes.draw do
   match '/to-do', to: 'user_project_rels#todo'
   
   resources :projects do
-    resources :tasks, :except => :index
-    resources :bugs, :except => :index
-    resources :resources, :except => :index
-    resources :users, :controller => "user_project_rels" , :except => [:show]
+    resources :tasks
+    resources :bugs
+    resources :resources
+    resources :users, :controller => "user_project_rels" 
 
     member do
       post 'comment'
