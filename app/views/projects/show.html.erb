@@ -39,6 +39,7 @@
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Task', new_project_task_path(@project) %>
 <% end %>
+ | <%= link_to 'More ...', project_tasks_path(@project) %>
 </div>
 
 <div id="other-right">
@@ -76,6 +77,7 @@
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Bug', new_project_bug_path(@project) %>
 <% end %>
+ | <%= link_to 'More ...', project_bugs_path(@project) %>
 </div>
 </div>
 
@@ -107,6 +109,7 @@
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
 <% end %>
+ | <%= link_to 'More ...', project_resources_path(@project) %>
 </div>
 
 <div id="other-right">
@@ -138,6 +141,7 @@
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'Add User', new_project_user_path(@project) %>
 <% end %>
+ | <%= link_to 'More ...', project_users_path(@project) %>
 </div>
 </div>
 <div>

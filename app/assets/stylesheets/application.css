@@ -13,6 +13,13 @@
  */
  @import "bootstrap";
  
+/*paragraph text for todo*/
+#theader{
+font-family:Arial, Helvetica, sans-serif;
+font-size:18px;
+bold: true;
+
+}
  /* containers */
 #container{
 float: left;
@@ -99,4 +106,21 @@ height: 25px;
 #tab td
 {
 	padding: 1px 15px 1px 1px;
+}
+/*todo table*/
+#todo
+{
+	margin: 7px;
+	border-collapse: collapse;
+	text-align: left;
+}
+#todo th
+{
+	font-weight: bold;
+	padding: 2px 2px;
+}
+#todo td
+{
+	padding: 2px 15px 2px 2px;
+	text-align: left;
 }
