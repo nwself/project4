@@ -40,6 +40,7 @@ class ResourcesController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @resource = Resource.new
+    @tag = String.new
 
     respond_to do |format|
       format.html # new.html.erb

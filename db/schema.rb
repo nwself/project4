@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118020727) do
+ActiveRecord::Schema.define(:version => 20121118215702) do
 
   create_table "bugs", :force => true do |t|
     t.string   "title"
@@ -60,8 +60,12 @@ ActiveRecord::Schema.define(:version => 20121118020727) do
     t.string   "title"
     t.string   "content"
     t.string   "permissions"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "taggings", :force => true do |t|

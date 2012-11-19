@@ -16,6 +16,7 @@ Project4::Application.routes.draw do
   match '/to-do', to: 'user_project_rels#todo'
   
   resources :projects do
+<<<<<<< HEAD
     resources :tasks, :except => :index do
       post 'comment'
     end
@@ -26,11 +27,16 @@ Project4::Application.routes.draw do
       post 'comment'
     end
 
+    resources :users, :controller => "user_project_rels" , :except => [:show]
+=======
+    resources :tasks
+    resources :bugs
+    resources :resources
     resources :users, :controller => "user_project_rels" 
+>>>>>>> FETCH_HEAD
 
     member do
       post 'comment'
-      post 'tag'
     end
   end
   

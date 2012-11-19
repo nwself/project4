@@ -29,6 +29,7 @@ class BugsController < ApplicationController
     @bug = Bug.find(params[:id])
     @project = Project.find(params[:project_id])
     @comment = Comment.new
+    @tag = String.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bug }
