@@ -12,7 +12,7 @@
 <tbody>
 <% current_user.projects.each do |project| %>
   <tr>
-    <td scope="row"><%= project.name %></td>
+    <td scope="row"><%= link_to project.name, project %></td>
     <td scope="row" width="480px"><%= project.description %></td>
     <td scope="row"><%= project.user_project_rels.find_by_user_id(current_user).role %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), project %></td>

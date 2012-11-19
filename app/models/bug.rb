@@ -30,7 +30,10 @@ class Bug < ActiveRecord::Base
     :message => "%{value} is not a valid status" }    
   validates :priority, :inclusion => { :in => %w(High Medium Low),
     :message => "%{value} is not a valid status" }
-    
+
+  acts_as_commentable
+  acts_as_taggable
+
   before_save :default_for_task
   def default_for_task
     self.task_or_bug= 'B'

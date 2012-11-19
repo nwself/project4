@@ -1,4 +1,14 @@
 class BugsController < ApplicationController
+
+  def comment
+    comment = Comment.build_from(Bug.find(params[:bug_id]), 
+                                 current_user, 
+                                 params[:comment][:body])
+    comment.save
+    redirect_to project_bug_path(params[:project_id], params[:bug_id])
+
+  end
+
   # GET /bugs
   # GET /bugs.json
   def index
@@ -18,6 +28,7 @@ class BugsController < ApplicationController
   def show
     @bug = Bug.find(params[:id])
     @project = Project.find(params[:project_id])
+    @comment = Comment.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @bug }
@@ -29,6 +40,7 @@ class BugsController < ApplicationController
   def new
     @bug = Bug.new
     @project = Project.find(params[:project_id])
+    @comment = Comment.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @bug }

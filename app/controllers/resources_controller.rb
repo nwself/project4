@@ -2,6 +2,15 @@ class ResourcesController < ApplicationController
 
   before_filter :authenticate_user!
 
+  def comment
+    comment = Comment.build_from(Resource.find(params[:resource_id]), 
+                                 current_user, 
+                                 params[:comment][:body])
+    comment.save
+    redirect_to project_resource_path(params[:project_id], params[:resource_id])
+
+  end
+
   # GET /resources
   # GET /resources.json
   def index
@@ -18,6 +27,7 @@ class ResourcesController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @resource = Resource.find(params[:id])
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb

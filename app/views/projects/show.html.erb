@@ -17,7 +17,7 @@
 
 <% @project.tasks.each do |task| %>
   <tr>
-    <td scope="row"><%= task.title %></td>
+    <td scope="row"><%= link_to task.title, [@project,task] %></td>
     <td><%= task.status %></td>
     <td><%= task.priority %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,task] %></td>
@@ -54,7 +54,7 @@
 
 <% @project.bugs.each do |bug| %>
   <tr>
-    <td scope="row"><%= bug.title %></td>
+    <td scope="row"><%= link_to bug.title, [@project,bug] %></td>
     <td><%= bug.status %></td>
     <td><%= bug.priority %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,bug] %></td>
@@ -90,7 +90,7 @@
   </tr>
 <% @project.resources.each do |resource| %>
   <tr>
-    <td scope="col"><%= resource.title %></td>
+    <td scope="col"><%= link_to resource.title, [@project,resource] %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,resource] %></td>
     <% if !(role=="Client") %>
     <td><%= link_to image_tag("edit.png", :border=>0, :class => 'icon'),  edit_project_resource_path(@project,resource) %></td>
@@ -146,14 +146,4 @@
 </p>
 </div>
 
-<div id="comments">
-  <%= form_for(@comment, url: comment_project_path) do |f| %>
-  <div class="field">
-    <%= f.label 'Add a comment...' %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-  <% end %>
-</div>
+<%= render "layouts/comments", thingy: @project, url: comment_project_path %>

@@ -1,6 +1,13 @@
 class TasksController < ApplicationController
   
-   
+  def comment
+    comment = Comment.build_from(Task.find(params[:task_id]), 
+                                 current_user, 
+                                 params[:comment][:body])
+    comment.save
+    redirect_to project_task_path(params[:project_id], params[:task_id])
+  end
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -22,6 +29,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @project = Project.find(params[:project_id])
+    @comment = Comment.new
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @task }
