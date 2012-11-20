@@ -41,3 +41,4 @@
 <%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> | <%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_bug_path(@project,@bug) %>
 
 <%= render 'layouts/comments', thingy: @bug, url: project_bug_comment_path(@project, @bug) %>
+<%= render 'layouts/tag_comment', thingy: @bug, url: project_bug_comment_path(@project, @bug) %>

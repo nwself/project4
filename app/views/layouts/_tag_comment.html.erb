@@ -5,8 +5,10 @@
 
     <div class="list-comments">
     <%= pluralize(thingy.comment_threads.count, "Comment") %>
+    <b><%= pluralize(thingy.comment_threads.count, "Comment") %></b><br/>
     <% thingy.comment_threads.each do |comment| %>
         <%= comment.user.username %> (<%= comment.created_at.strftime("%m-%d-%y %I:%M") %>): <%= comment.body %>
+       <i> <%= comment.user.username %></i> said on (<%= comment.created_at.strftime("%m-%d-%y %I:%M") %>): <%= comment.body %> <br/>
     <% end %>
     </div>
 
@@ -15,6 +17,7 @@
     Add a comment:
     <div class="field">
       <%= f.text_area :body %>
+      <%= f.text_area :body,  :cols => 30, :rows => 5%>
     </div>
     <div class="actions">
       <%= f.submit %>
