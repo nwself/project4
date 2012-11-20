@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   def tag
     task = Task.find(params[:task_id])
     task.tag_list.concat(params[:tag].split(","))
-    task.save validate: false
+    task.save
     redirect_to project_task_path(params[:project_id], task)
   end
   
