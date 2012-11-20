@@ -9,6 +9,7 @@ class TaskBugsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile # index.html.erb
       format.json { render json: @task_bugs }
     end
   end
@@ -20,6 +21,7 @@ class TaskBugsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile # show.html.erb
       format.json { render json: @task_bug }
     end
   end
@@ -31,6 +33,7 @@ class TaskBugsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile # new.html.erb
       format.json { render json: @task_bug }
     end
   end
@@ -48,9 +51,11 @@ class TaskBugsController < ApplicationController
     respond_to do |format|
       if @task_bug.save
         format.html { redirect_to @task_bug, notice: 'Task bug was successfully created.' }
+        format.mobile { redirect_to @task_bug, notice: 'Task bug was successfully created.' }
         format.json { render json: @task_bug, status: :created, location: @task_bug }
       else
         format.html { render action: "new" }
+        format.mobile { render action: "new" }
         format.json { render json: @task_bug.errors, status: :unprocessable_entity }
       end
     end
@@ -64,9 +69,11 @@ class TaskBugsController < ApplicationController
     respond_to do |format|
       if @task_bug.update_attributes(params[:task_bug])
         format.html { redirect_to @task_bug, notice: 'Task bug was successfully updated.' }
+        format.mobile { redirect_to @task_bug, notice: 'Task bug was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.mobile { render action: "edit" }
         format.json { render json: @task_bug.errors, status: :unprocessable_entity }
       end
     end
@@ -80,6 +87,7 @@ class TaskBugsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to task_bugs_url }
+      format.mobile { redirect_to task_bugs_url }
       format.json { head :no_content }
     end
   end

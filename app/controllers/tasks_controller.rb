@@ -46,6 +46,7 @@ class TasksController < ApplicationController
 #     @is_admin = UserProjectRel.find_by_user_id_and_project_id(current_user.id,params[:project_id]).role == "Administrator"
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile # new.html.erb
       format.json { render json: @task }
     end
   end
@@ -68,9 +69,11 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @rel.save
         format.html { redirect_to project_path(params[:project_id]), notice: 'Task was successfully created.' }
+        format.mobile { redirect_to project_path(params[:project_id]), notice: 'Task was successfully created.' }
         format.json { render json: @bug, status: :created, location: @bug }
       else
         format.html { render action: "new" }
+        format.mobile { render action: "new" }
         format.json { render json: @bug.errors, status: :unprocessable_entity }
       end
     end
@@ -86,9 +89,11 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { redirect_to project_path(params[:project_id]), notice: 'Task was successfully updated.' }
+        format.mobile { redirect_to project_path(params[:project_id]), notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.mobile { render action: "edit" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -102,6 +107,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to project_path(params[:project_id]) }
+      format.mobile { redirect_to project_path(params[:project_id]) }
       format.json { head :no_content }
     end
   end

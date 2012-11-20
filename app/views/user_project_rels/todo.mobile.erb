@@ -1,0 +1,79 @@
+
+<% current_user.projects.each do |project| %>
+
+<h2>
+  <%= link_to project.name, "projects/#{project.id}"  %>  
+  (<%= role = project.user_project_rels.find_by_user_id(current_user).role %>)
+</h2>
+
+<h3>Tasks</h3>
+
+<table id="todo">
+  <tr>
+    <th>Title</th>
+    <th>Status</th>
+    <th>Priority</th>
+    <th>Percentage completed</th>
+    <th>Due date</th>
+    <th>Estimated date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% project.tasks.where("user_project_rels.role='"+role+"'").each do |task| %>
+  <tr>
+  	<td><%= link_to task.title, [project,task] %></td>
+    <td><%= task.status %></td>
+    <td><%= task.priority %></td>
+    <td><%= task.percentage_completed %></td>
+    <td><%= task.due_date %></td>
+    <td><%= task.estimated_date %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%if role=="Administrator" %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
+<%= link_to   'New Task', new_project_task_path(project) %>
+<%end%>
+<p> <br/>
+</p>
+<h3>Bugs</h3>
+
+<table class="todo">
+  <tr>
+    <th>Title</th>
+    <th>Status</th>
+    <th>Priority</th>
+    <th>Percentage completed</th>
+    <th>Due date</th>
+    <th>Estimated date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% project.bugs.where("user_project_rels.role='"+role+"'").each do |bug| %>
+  <tr>
+  	<td><%= link_to bug.title, [project, bug] %></td>
+    <td><%= bug.status %></td>
+    <td><%= bug.priority %></td>
+    <td><%= bug.percentage_completed %></td>
+    <td><%= bug.due_date %></td>
+    <td><%= bug.estimated_date %></td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%if role=="Administrator" %>
+<%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
+<%= link_to   'New Bug', new_project_bug_path(project) %>
+<%end%>
+
+<% end %>
+</table>
+
+<br />
+

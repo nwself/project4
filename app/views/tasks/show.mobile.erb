@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<h2>View Task: <%= @task.title %></h2>
+<p>
+  <b>Task:</b>
+  <%= @task.title %>
+</p>
+
+<p>
+  <b>Assigned to:</b>
+  <% @task.users.each do |user| %>
+  <%= user.username %>
+  <%end%>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task.status %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @task.priority %>
+</p>
+
+<p>
+  <b>Percentage completed:</b>
+  <%= @task.percentage_completed %>
+</p>
+
+<p>
+  <b>Due date:</b>
+  <%= @task.due_date %>
+</p>
+
+<p>
+  <b>Estimated date:</b>
+  <%= @task.estimated_date %>
+</p>
+
+
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %>|<%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_task_path(@project,@task) %>
+
+<!-- <%= render 'layouts/comments', thingy: @task, url: project_task_comment_path(@project, @task) %> -->

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Task bug:</b>
+  <%= @task_user_proj_rel.task_bug %>
+</p>
+
+<p>
+  <b>User project rel:</b>
+  <%= @task_user_proj_rel.user_project_rel %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_user_proj_rel_path(@task_user_proj_rel) %> |
+<%= link_to 'Back', task_user_proj_rels_path %>

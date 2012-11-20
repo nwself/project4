@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<h2>View Resource: <%= @resource.title %></h2>
+<p>
+  <b>Title:</b>
+  <%= @resource.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @resource.content %>
+</p>
+
+<% if !@resource.attachment_file_size.nil? %>
+<p>
+  <b>Document:</b>
+  <%= link_to @resource.attachment_file_name, @resource.attachment.url(:original, false) %>
+</p>
+<%end%>
+
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> |<%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_resource_path(@project,@resource)  %> 
+
+<!-- <%= render 'layouts/comments', thingy: @resource, url: project_resource_comment_path(@project, @resource) %> -->

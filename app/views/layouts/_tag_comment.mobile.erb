@@ -1,0 +1,43 @@
+<div id="page-container">
+  <div id="other-left">
+    <h3 align="center"><u>Comments</u></h3>
+    <br />
+
+    <div class="list-comments">
+    <%= pluralize(thingy.comment_threads.count, "Comment") %>
+    <% thingy.comment_threads.each do |comment| %>
+        <%= comment.user.username %> (<%= comment.created_at.strftime("%m-%d-%y %I:%M") %>): <%= comment.body %>
+    <% end %>
+    </div>
+
+    <%= form_for(@comment, url: url) do |f| %>
+    <br />
+    Add a comment:
+    <div class="field">
+      <%= f.text_area :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
+  </div>
+
+  <div id="other-right">
+    <h3 align="center"><u>Tags</u></h3>
+    <br />
+
+    <%= thingy.tags.each do |tag| %>
+      tag.name
+    <% end %>
+
+    <%= form_for @tag, action: tag_project_path do |f| %>
+      Add some tags (comma separated):
+      <div class="field">
+        <%= f.text_field :tag %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Add tags', url: tag_project_path %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -19,6 +19,7 @@ class BugsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile # index.html.erb
       format.json { render json: @bugs }
     end
   end
@@ -32,6 +33,7 @@ class BugsController < ApplicationController
     @tag = String.new
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile # show.html.erb
       format.json { render json: @bug }
     end
   end
@@ -44,6 +46,7 @@ class BugsController < ApplicationController
     @comment = Comment.new
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile # new.html.erb
       format.json { render json: @bug }
     end
   end
@@ -63,9 +66,11 @@ class BugsController < ApplicationController
     respond_to do |format|
       if @bug.save
         format.html { redirect_to  project_path(params[:project_id]) , notice: 'Bug was successfully created.' }
+        format.mobile { redirect_to  project_path(params[:project_id]) , notice: 'Bug was successfully created.' }
         format.json { render json: @bug, status: :created, location: @bug }
       else
         format.html { render action: "new" }
+        format.mobile { render action: "new" }
         format.json { render json: @bug.errors, status: :unprocessable_entity }
       end
     end
@@ -79,9 +84,11 @@ class BugsController < ApplicationController
     respond_to do |format|
       if @bug.update_attributes(params[:bug])
         format.html { redirect_to  project_path(params[:project_id]), notice: 'Bug was successfully updated.' }
+        format.mobile { redirect_to  project_path(params[:project_id]), notice: 'Bug was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.mobile { render action: "edit" }
         format.json { render json: @bug.errors, status: :unprocessable_entity }
       end
     end
@@ -95,6 +102,7 @@ class BugsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to  project_path(params[:project_id]) }
+      format.mobile { redirect_to  project_path(params[:project_id]) }
       format.json { head :no_content }
     end
   end

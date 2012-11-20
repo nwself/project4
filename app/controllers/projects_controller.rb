@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   def index
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile # index.html.erb
       format.json { render json: @projects }
       format.rss { render layout: false }
     end
@@ -43,6 +44,7 @@ class ProjectsController < ApplicationController
     @tag = String.new
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile # show.html.erb
       format.json { render json: @project }
     end
   end
@@ -55,6 +57,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile # new.html.erb
       format.json { render json: @project }
     end
   end
@@ -74,9 +77,11 @@ class ProjectsController < ApplicationController
           @rel=@project.user_project_rels.build(:project_id=>@project.id, :user_id=>current_user.id, :role=>'Administrator')
           @rel.save
         format.html { redirect_to projects_url, notice: 'Project was successfully created.' }
+        format.mobile { redirect_to projects_url, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
+        format.mobile { render action: "new" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -90,9 +95,11 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to projects_url , notice: 'Project was successfully updated.' }
+        format.mobile { redirect_to projects_url , notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.mobile { render action: "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -105,7 +112,8 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }  
+      format.html { redirect_to projects_url } 
+      format.mobile { redirect_to projects_url }  
       format.json { head :no_content }
     end
   end

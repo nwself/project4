@@ -1,0 +1,35 @@
+<h1>Listing task_bugs</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Status</th>
+    <th>Priority</th>
+    <th>Due date</th>
+    <th>Estimated date</th>
+    <th>Percentage completed</th>
+    <th>Task or bug</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @task_bugs.each do |task_bug| %>
+  <tr>
+    <td><%= task_bug.title %></td>
+    <td><%= task_bug.status %></td>
+    <td><%= task_bug.priority %></td>
+    <td><%= task_bug.due_date %></td>
+    <td><%= task_bug.estimated_date %></td>
+    <td><%= task_bug.percentage_completed %></td>
+    <td><%= task_bug.task_or_bug %></td>
+    <td><%= link_to 'Show', task_bug %></td>
+    <td><%= link_to 'Edit', edit_task_bug_path(task_bug) %></td>
+    <td><%= link_to 'Destroy', task_bug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task bug', new_task_bug_path %>

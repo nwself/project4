@@ -1,0 +1,41 @@
+<%= form_for([@project, @bug]) do |f| %>
+  <% if @bug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bug.errors.count, "error") %> prohibited this bug from being saved:</h2>
+
+      <ul>
+      <% @bug.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, ["Select","Open","In Progress","Complete"] %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+    <%= f.select :priority, ["Select","High","Medium","Low"] %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage_completed %><br />
+    <%= f.text_field :percentage_completed %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br />
+    <%= f.date_select :due_date %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_date %><br />
+    <%= f.date_select :estimated_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

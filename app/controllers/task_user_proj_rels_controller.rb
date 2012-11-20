@@ -6,6 +6,7 @@ class TaskUserProjRelsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile # index.html.erb
       format.json { render json: @task_user_proj_rels }
     end
   end
@@ -17,6 +18,7 @@ class TaskUserProjRelsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile # show.html.erb
       format.json { render json: @task_user_proj_rel }
     end
   end
@@ -28,6 +30,7 @@ class TaskUserProjRelsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile # new.html.erb
       format.json { render json: @task_user_proj_rel }
     end
   end
@@ -45,9 +48,11 @@ class TaskUserProjRelsController < ApplicationController
     respond_to do |format|
       if @task_user_proj_rel.save
         format.html { redirect_to @task_user_proj_rel, notice: 'Task user proj rel was successfully created.' }
+        format.mobile { redirect_to @task_user_proj_rel, notice: 'Task user proj rel was successfully created.' }
         format.json { render json: @task_user_proj_rel, status: :created, location: @task_user_proj_rel }
       else
         format.html { render action: "new" }
+        format.mobile { render action: "new" }
         format.json { render json: @task_user_proj_rel.errors, status: :unprocessable_entity }
       end
     end
@@ -61,9 +66,11 @@ class TaskUserProjRelsController < ApplicationController
     respond_to do |format|
       if @task_user_proj_rel.update_attributes(params[:task_user_proj_rel])
         format.html { redirect_to @task_user_proj_rel, notice: 'Task user proj rel was successfully updated.' }
+        format.mobile { redirect_to @task_user_proj_rel, notice: 'Task user proj rel was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.mobile { render action: "edit" }
         format.json { render json: @task_user_proj_rel.errors, status: :unprocessable_entity }
       end
     end
@@ -77,6 +84,7 @@ class TaskUserProjRelsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to task_user_proj_rels_url }
+      format.mobile { redirect_to task_user_proj_rels_url }
       format.json { head :no_content }
     end
   end

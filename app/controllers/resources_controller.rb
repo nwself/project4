@@ -18,6 +18,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile # index.html.erb
       format.json { render json: @resources }
     end
   end
@@ -31,6 +32,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile # show.html.erb
       format.json { render json: @resource }
     end
   end
@@ -44,6 +46,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile # new.html.erb
       format.json { render json: @resource }
     end
   end
@@ -63,6 +66,7 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.save
         format.html { redirect_to project_path(params[:project_id]) , notice: 'Resource was successfully created.' }
+        format.mobile { redirect_to project_path(params[:project_id]) , notice: 'Resource was successfully created.' }
         format.json { render json: @resource, status: :created, location: @resource }
       else
         format.html { render action: "new" }
@@ -79,9 +83,11 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.update_attributes(params[:resource])
         format.html { redirect_to project_path(params[:project_id]) , notice: 'Resource was successfully updated.' }
+        format.mobile { redirect_to project_path(params[:project_id]) , notice: 'Resource was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
+        format.mobile { render action: "edit" }
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
@@ -95,6 +101,7 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to project_path(params[:project_id])  }
+      format.mobile { redirect_to project_path(params[:project_id])  }
       format.json { head :no_content }
     end
   end
