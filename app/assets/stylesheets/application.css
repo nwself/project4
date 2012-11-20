@@ -123,30 +123,66 @@ height: 25px;
 	padding: 2px 15px 2px 2px;
 	text-align: left;
 }
-.apple_pagination {
+
+.pagination {
   background: #f1f1f1;
   border: 1px solid #e5e5e5;
   text-align: center;
   padding: 1em;
-  cursor: default; }
-  .apple_pagination a, .apple_pagination span {
-    padding: 0.2em 0.3em; }
-  .apple_pagination .disabled {
-    color: #aaaaaa; }
-  .apple_pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    background-color: #bebebe;
-    display: inline-block;
-    width: 1.4em;
-    height: 1.4em;
-    line-height: 1.5;
-    -moz-border-radius: 1em;
-    -webkit-border-radius: 1em;
-    border-radius: 1em;
-    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
-  .apple_pagination a {
-    text-decoration: none;
-    color: black; }
-    .apple_pagination a:hover, .apple_pagination a:focus {
-      text-decoration: underline; }
+  cursor: default;
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+
+.pagination a, .pagination span {
+	padding: 0.2em 0.3em; 
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+.pagination .disabled {
+	color: #aaaaaa; 
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+.pagination .current {
+	font-style: normal;
+	font-weight: bold;
+	background-color: #bebebe;
+	display: inline-block;
+	width: 1.4em;
+	height: 1.4em;
+	line-height: 1.5;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; 
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+.pagination previous_page {
+	text-decoration: none;
+	color: black; 
+}
+.pagination a {
+	text-decoration: none;
+	color: black; 
+}
+.pagination a:hover, .pagination a:focus {
+	text-decoration: underline; 
+}
