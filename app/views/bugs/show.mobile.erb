@@ -38,6 +38,4 @@
   <%= @bug.estimated_date %>
 </p>
 
-
-
-<%= render 'layouts/tag_comment', thingy: @bug, url: project_bug_comment_path(@project, @bug) %>
+<%= render 'layouts/tag_comment', thingy: @bug, url: project_bug_comment_path(@project, @bug), tag_url: project_bug_tag_path(@project, @bug) %>

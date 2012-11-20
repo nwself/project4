@@ -19,11 +19,6 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @project = Project.find(params[:project_id])
-    @project.bugs
-    @project.tasks
-    
-    
-   # @tasks = Task.all
 
     respond_to do |format|
       format.html # index.html.erb

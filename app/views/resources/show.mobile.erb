@@ -18,4 +18,4 @@
 </p>
 <%end%>
 
-<%= render 'layouts/tag_comment', thingy: @resource, url: project_resource_comment_path(@project, @resource) %>
+<%= render 'layouts/tag_comment', thingy: @resource, url: project_resource_comment_path(@project, @resource), tag_url: project_resource_tag_path(@project, @resource) %>
