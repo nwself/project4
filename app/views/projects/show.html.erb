@@ -3,6 +3,11 @@
 <%= role = @project.user_project_rels.find_by_user_id(current_user).role %>
 <p id="notice"><%= notice %></p>
 </p>
+<div>
+<p> 
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), projects_path %>
+</p>
+</div>
 <div id="page-container">
 <div id="other-left">
 <h3 align="center"><u>Tasks</u></h3>
@@ -144,11 +149,4 @@
  | <%= link_to 'More ...', project_users_path(@project) %>
 </div>
 </div>
-<div>
-<p> 
-<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), projects_path %>
-</p>
-</div>
-
-
 <%= render "layouts/tag_comment", thingy: @project, url: comment_project_path %>
