@@ -25,7 +25,7 @@ class Task < ActiveRecord::Base
   attr_accessible :due_date, :estimated_date, :percentage_completed, :priority, :status, :task_or_bug, :title, :owner
   
   validates :title, :status, :priority, :due_date, :presence=> true
-   validates :percentage_completed, :numericality => { :only_integer => true ,:greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
+   validates :percentage_completed, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
   validates :title, :length => { :maximum => 250 }
   validates :status, :inclusion => { :in => ['Open', 'In Progress', 'Complete'],
     :message => "%{value} is not a valid status" }    

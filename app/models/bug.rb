@@ -24,6 +24,7 @@ class Bug < ActiveRecord::Base
   
   attr_accessible :due_date, :estimated_date, :percentage_completed, :priority, :status, :task_or_bug, :title
   
+  validates :percentage_completed, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100}
   validates :title, :status, :priority, :due_date, :presence=> true
   validates :title, :length => { :maximum => 250 }
   validates :status, :inclusion => { :in => ['Open', 'In Progress', 'Complete'],
