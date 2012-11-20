@@ -21,7 +21,7 @@
     <th></th>
   </tr>
 
-<% project.tasks.where("user_project_rels.role='"+role+"'").each do |task| %>
+<% project.tasks.where("user_project_rels.role='"+role+"'").order('task_bugs.priority').each do |task| %>
   <tr>
   	<td><%= link_to task.title, [project,task] %></td>
     <td><%= task.status %></td>
@@ -55,7 +55,7 @@
     <th></th>
   </tr>
 
-<% project.bugs.where("user_project_rels.role='"+role+"'").each do |bug| %>
+<% project.bugs.where("user_project_rels.role='"+role+"'").order('task_bugs.priority').each do |bug| %>
   <tr>
   	<td><%= link_to bug.title, [project, bug] %></td>
     <td><%= bug.status %></td>

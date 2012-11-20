@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h2>View Task: <%= @task.title %></h2>
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %>|<%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_task_path(@project,@task) %>
 <p>
   <b>Task:</b>
   <%= @task.title %>

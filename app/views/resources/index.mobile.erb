@@ -23,6 +23,7 @@
 </table>
 <%= will_paginate @pagination %>
 <br/>
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> |
 <% if !(role=="Client") %>
 <%=image_tag("add.jpeg", :height=>"10px", :width=>"10px")%>
 <%= link_to 'New Resource', new_project_resource_path(@project) %>
