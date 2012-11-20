@@ -21,6 +21,7 @@
   </tr>
 
 <% @project.tasks.each do |task| %>
+<% @project.tasks.limit(10).each do |task| %>
   <tr>
     <td scope="row"><%= link_to task.title, [@project,task] %></td>
     <td><%= task.status %></td>
@@ -59,6 +60,7 @@
   </tr>
 
 <% @project.bugs.each do |bug| %>
+<% @project.bugs.limit(10).each do |bug| %>
   <tr>
     <td scope="row"><%= link_to bug.title, [@project,bug] %></td>
     <td><%= bug.status %></td>
@@ -96,6 +98,7 @@
     <th></th>
   </tr>
 <% @project.resources.each do |resource| %>
+<% @project.resources.limit(5).each do |resource| %>
   <tr>
     <td scope="col"><%= link_to resource.title, [@project,resource] %></td>
     <td><%= link_to image_tag("show.png", :border=>0, :class => 'icon'), [@project,resource] %></td>
@@ -129,6 +132,7 @@
   </tr>
 
 <% @project.user_project_rels.each do |user_project_rel| %>
+<% @project.user_project_rels.limit(5).each do |user_project_rel| %>
   <tr>
     <td><%= user_project_rel.username %></td>
     <td><%= user_project_rel.role %></td>
@@ -150,3 +154,4 @@
 </div>
 </div>
 <%= render "layouts/tag_comment", thingy: @project, url: comment_project_path, tag_url: tag_project_path(@project) %>
+<%= render "layouts/tag_comment", thingy: @project, url: comment_project_path %>

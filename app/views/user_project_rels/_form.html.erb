@@ -1,6 +1,6 @@
 <%if @user_list.nil? || @user_list.size==0	 %>
-<div id="error_explanation">
-      <h2>All the users are already added in the current project</h2>
+<p id="notice">
+ All the users are already added in the current project </p>
 <%else %>
 <%= form_for(@user_project_rel, :url => (@user_project_rel.persisted? ? project_user_path(@project, @user_project_rel) : project_users_path(@project))) do |f| %>
   <% if @user_project_rel.errors.any? %>
