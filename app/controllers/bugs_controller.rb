@@ -3,7 +3,7 @@ class BugsController < ApplicationController
   def tag
     bug = Bug.find(params[:bug_id])
     bug.tag_list.concat(params[:tag].split(","))
-    bug.save
+    bug.save validate: false
     redirect_to project_bug_path(params[:project_id], bug)
   end
 
