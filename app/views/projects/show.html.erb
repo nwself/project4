@@ -149,4 +149,4 @@
  | <%= link_to 'More ...', project_users_path(@project) %>
 </div>
 </div>
-<%= render "layouts/tag_comment", thingy: @project, url: comment_project_path %>
+<%= render "layouts/tag_comment", thingy: @project, url: comment_project_path, tag_url: tag_project_path(@project) %>
