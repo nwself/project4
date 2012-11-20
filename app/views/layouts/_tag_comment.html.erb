@@ -29,9 +29,10 @@
    <h3 align="center"><u>Tags</u></h3>
    <br />
 
-   <%= thingy.tags.each do |tag| %>
-     tag.name
-   <% end %>
+
+   <%= thingy.tags.join(", ") %>
+   <br />
+   <br />
 
    <%= form_for @tag,  url: tag_url do |f| %>
      <p>Add some tags (comma separated):</p>

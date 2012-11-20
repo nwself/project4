@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def tag
     project = Project.find(params[:id])
-    #project.tag_list.join(params[:tag].split(","))
+    project.tag_list.concat(params[:tag].split(","))
     project.save
     redirect_to project_path(project)
   end
