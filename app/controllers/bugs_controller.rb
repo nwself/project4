@@ -1,5 +1,12 @@
 class BugsController < ApplicationController
 
+  def tag
+    bug = Bug.find(params[:bug_id])
+    bug.tag_list.concat(params[:tag].split(","))
+    bug.save
+    redirect_to project_bug_path(params[:project_id], bug)
+  end
+
   def comment
     comment = Comment.build_from(Bug.find(params[:bug_id]), 
                                  current_user, 

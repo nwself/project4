@@ -18,12 +18,15 @@ Project4::Application.routes.draw do
   resources :projects do
     resources :tasks  do
       post 'comment'
+      post 'tag'
     end
     resources :bugs do
       post 'comment'
+      post 'tag'
     end
     resources :resources  do
       post 'comment'
+      post 'tag'
     end
 
     resources :users, :controller => "user_project_rels" 

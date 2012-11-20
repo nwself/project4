@@ -1,4 +1,11 @@
 class TasksController < ApplicationController
+
+  def tag
+    task = Task.find(params[:task_id])
+    task.tag_list.concat(params[:tag].split(","))
+    task.save
+    redirect_to project_task_path(params[:project_id], task)
+  end
   
   def comment
     comment = Comment.build_from(Task.find(params[:task_id]), 

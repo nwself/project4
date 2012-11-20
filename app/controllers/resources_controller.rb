@@ -2,6 +2,13 @@ class ResourcesController < ApplicationController
 
   before_filter :authenticate_user!
 
+  def tag
+    resource = Resource.find(params[:resource_id])
+    resource.tag_list.concat(params[:tag].split(","))
+    resource.save
+    redirect_to project_resource_path(params[:project_id], resource)
+  end
+
   def comment
     comment = Comment.build_from(Resource.find(params[:resource_id]), 
                                  current_user, 
@@ -29,6 +36,7 @@ class ResourcesController < ApplicationController
     @project = Project.find(params[:project_id])
     @resource = Resource.find(params[:id])
     @comment = Comment.new
+    @tag = String.new
 
     respond_to do |format|
       format.html # show.html.erb
