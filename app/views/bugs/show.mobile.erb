@@ -1,12 +1,6 @@
-<head>
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-   <link rel="stylesheet" href="iui/iui.css" type="text/css" />
-   <link rel="stylesheet" href="iui/t/default/default-theme.css" type="text/css"/>
-   <script type="application/x-javascript" src="iui/iui.js"></script>
-</head>
 <p id="notice"><%= notice %></p>
 <h2>View Bug: <%= @bug.title %></h2>
-
+<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> | <%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_bug_path(@project,@bug) %>
 <p>
   <b>Bug:</b>
   <%= @bug.title %>
@@ -44,5 +38,6 @@
   <%= @bug.estimated_date %>
 </p>
 
-<%= link_to image_tag("prev.png", :border=>0, :class => 'icon'), project_path(@project) %> | <%= link_to image_tag("edit.png", :border=>0, :class => 'icon'), edit_project_bug_path(@project,@bug) %>
 
+
+<%= render 'layouts/tag_comment', thingy: @bug, url: project_bug_comment_path(@project, @bug) %>

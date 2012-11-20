@@ -3,11 +3,9 @@
     <h3 align="center"><u>Comments</u></h3>
     <br />
 
-    <div class="list-comments">
-    <%= pluralize(thingy.comment_threads.count, "Comment") %>
+    <div class="list-comments"> 
     <b><%= pluralize(thingy.comment_threads.count, "Comment") %></b><br/>
     <% thingy.comment_threads.each do |comment| %>
-        <%= comment.user.username %> (<%= comment.created_at.strftime("%m-%d-%y %I:%M") %>): <%= comment.body %>
        <i> <%= comment.user.username %></i> said on (<%= comment.created_at.strftime("%m-%d-%y %I:%M") %>): <%= comment.body %> <br/>
     <% end %>
     </div>
@@ -16,7 +14,6 @@
     <br />
     Add a comment:
     <div class="field">
-      <%= f.text_area :body %>
       <%= f.text_area :body,  :cols => 30, :rows => 5%>
     </div>
     <div class="actions">
@@ -26,21 +23,21 @@
   </div>
 
   <div id="other-right">
-   <h3 align="center"><u>Tags</u></h3>
-   <br />
+    <h3 align="center"><u>Tags</u></h3>
+    <br />
 
-   <%= thingy.tags.each do |tag| %>
-     tag.name
-   <% end %>
+    <%= thingy.tags.each do |tag| %>
+      tag.name
+    <% end %>
 
-   <%= form_for @tag,  url: tag_url do |f| %>
-     <p>Add some tags (comma separated):</p>
-     <div class="field">
-       <%= f.text_field :tag %>
-     </div>
-     <div class="actions">
-       <%= f.submit 'Add tags' %>
-     </div>
-   <% end %>
- </div>
+    <%= form_for @tag, action: tag_project_path do |f| %>
+      Add some tags (comma separated):
+      <div class="field">
+        <%= f.text_field :tag %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Add tags', url: tag_project_path %>
+      </div>
+    <% end %>
+  </div>
 </div>
